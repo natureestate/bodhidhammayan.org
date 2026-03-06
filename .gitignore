@@ -3,9 +3,11 @@ node_modules/
 dist/
 .turbo/
 .vinxi/
+.wrangler/
 .env
 .env.local
 .env.*.local
 *.log
 .DS_Store
 .sanity/
+app.config.timestamp_*

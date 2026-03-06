@@ -1,5 +1,10 @@
 {
-  "name": "bodhidhammayan-web",
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bodhidhammayan",
   "compatibility_date": "2026-03-06",
-  "pages_build_output_dir": ".output/public"
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/react-start/server-entry",
+  "observability": {
+    "enabled": true
+  }
 }

@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@bodhidhammayan/ts-config": "workspace:*",
+    "@cloudflare/vite-plugin": "^1.26.1",
     "@tailwindcss/vite": "^4.2.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
