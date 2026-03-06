@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import type { Language } from "@bodhidhammayan/api-client";
 import { t } from "@bodhidhammayan/api-client";
 import { BookOpen } from "lucide-react";
@@ -19,7 +20,56 @@ const bookImages: Record<string, string> = {
   "book-09": "/images/teachings/heavy-light-mind.webp",
 };
 
+function BookCard({ book, lang }: { book: (typeof seedBooks)[number]; lang: Language }) {
+  return (
+    <div className="group w-[100px] shrink-0 md:w-[120px]">
+      <div className="relative aspect-3/4 w-full overflow-hidden rounded-lg bg-brand-cream shadow-sm transition-all group-hover:-translate-y-1 group-hover:shadow-md">
+        <img
+          src={bookImages[book.id] ?? "/images/teachings/heavy-light-mind.webp"}
+          alt={lang === "en" && book.titleEn ? book.titleEn : book.title}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 flex items-end bg-linear-to-t from-brand-dark/60 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
+          <BookOpen className="h-4 w-4 text-brand-gold-300" aria-hidden />
+        </div>
+      </div>
+      <p className="mt-2 line-clamp-2 text-xs font-medium text-brand-dark">
+        {lang === "en" && book.titleEn ? book.titleEn : book.title}
+      </p>
+    </div>
+  );
+}
+
 export function BooksSection({ lang }: BooksSectionProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let animationId: number;
+    const speed = 0.5;
+
+    function step() {
+      if (!container || isPaused) {
+        animationId = requestAnimationFrame(step);
+        return;
+      }
+      container.scrollLeft += speed;
+      if (container.scrollLeft >= container.scrollWidth / 2) {
+        container.scrollLeft = 0;
+      }
+      animationId = requestAnimationFrame(step);
+    }
+
+    animationId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animationId);
+  }, [isPaused]);
+
+  const duplicatedBooks = [...seedBooks, ...seedBooks];
+
   return (
     <section className="bg-brand-cream section-padding py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
@@ -27,28 +77,15 @@ export function BooksSection({ lang }: BooksSectionProps) {
           {t(lang, "section.books")}
         </h2>
 
-        <div className="mt-8 overflow-x-auto pb-4">
+        <div
+          ref={scrollRef}
+          className="mt-8 overflow-hidden pb-4"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <div className="flex gap-3 md:gap-4">
-            {seedBooks.map((book) => (
-              <div
-                key={book.id}
-                className="group w-[100px] shrink-0 md:w-[120px]"
-              >
-                <div className="relative aspect-3/4 w-full overflow-hidden rounded-lg bg-brand-cream shadow-sm transition-all group-hover:-translate-y-1 group-hover:shadow-md">
-                  <img
-                    src={bookImages[book.id] ?? "/images/teachings/heavy-light-mind.webp"}
-                    alt={lang === "en" && book.titleEn ? book.titleEn : book.title}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 flex items-end bg-linear-to-t from-brand-dark/60 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
-                    <BookOpen className="h-4 w-4 text-brand-gold-300" aria-hidden />
-                  </div>
-                </div>
-                <p className="mt-2 line-clamp-2 text-xs font-medium text-brand-dark">
-                  {lang === "en" && book.titleEn ? book.titleEn : book.title}
-                </p>
-              </div>
+            {duplicatedBooks.map((book, idx) => (
+              <BookCard key={`${book.id}-${idx}`} book={book} lang={lang} />
             ))}
           </div>
         </div>

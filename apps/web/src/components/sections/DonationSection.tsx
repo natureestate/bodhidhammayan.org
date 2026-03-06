@@ -1,6 +1,8 @@
+import { useCallback } from "react";
 import type { Language } from "@bodhidhammayan/api-client";
 import { t } from "@bodhidhammayan/api-client";
-import { Heart, Building2, Globe } from "lucide-react";
+import { Heart, Globe, Copy, Check } from "lucide-react";
+import { toast } from "sonner";
 
 interface DonationSectionProps {
   lang: Language;
@@ -9,21 +11,55 @@ interface DonationSectionProps {
 const donationAccounts = [
   {
     foundationKey: "donation.foundation1",
+    logo: "/images/foundations/kbo-logo.jpg",
+    url: "https://www.knowingbuddha.org/",
     accounts: [
-      { bankKey: "donation.kbank", number: "003-2-79877-4", icon: "/images/banks/kbank.svg" },
-      { bankKey: "donation.scb", number: "428-179929-8", icon: "/images/banks/scb.svg" },
+      { bankKey: "donation.kbank", number: "003-2-79877-4", icon: "/images/banks/KBANK.png" },
+      { bankKey: "donation.scb", number: "428-179929-8", icon: "/images/banks/SCB.png" },
     ],
   },
   {
     foundationKey: "donation.foundation2",
+    logo: "/images/foundations/sol-logo.webp",
+    url: "https://www.schooloflifethailand.org/",
     accounts: [
-      { bankKey: "donation.kbank", number: "003-2-41586-7", icon: "/images/banks/kbank.svg" },
-      { bankKey: "donation.scb", number: "428-179580-4", icon: "/images/banks/scb.svg" },
+      { bankKey: "donation.kbank", number: "003-2-41586-7", icon: "/images/banks/KBANK.png" },
+      { bankKey: "donation.scb", number: "428-179580-4", icon: "/images/banks/SCB.png" },
     ],
   },
 ];
 
 const SWIFT_CODE = "SICOTHBK";
+
+function CopyButton({ text, lang }: { text: string; lang: Language }) {
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(text.replace(/-/g, ""));
+      toast.success(
+        lang === "th" ? "คัดลอกเลขบัญชีแล้ว" : "Account number copied",
+        {
+          icon: <Check className="h-4 w-4 text-green-600" />,
+          duration: 2000,
+        }
+      );
+    } catch {
+      toast.error(
+        lang === "th" ? "คัดลอกไม่สำเร็จ" : "Failed to copy"
+      );
+    }
+  }, [text, lang]);
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-brand-text-muted transition-all duration-200 hover:bg-brand-gold-100 hover:text-brand-gold-700 active:scale-90"
+      aria-label={lang === "th" ? "คัดลอกเลขบัญชี" : "Copy account number"}
+    >
+      <Copy className="h-3.5 w-3.5" />
+    </button>
+  );
+}
 
 export function DonationSection({ lang }: DonationSectionProps) {
   return (
@@ -47,11 +83,27 @@ export function DonationSection({ lang }: DonationSectionProps) {
               className="rounded-2xl border border-brand-gold-100/60 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md"
             >
               <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-gold-50">
-                  <Building2 className="h-4 w-4 text-brand-gold-600" />
-                </div>
+                <a
+                  href={foundation.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-brand-gold-100/60 transition-shadow hover:shadow-md"
+                >
+                  <img
+                    src={foundation.logo}
+                    alt={t(lang, foundation.foundationKey)}
+                    className="h-full w-full object-contain"
+                  />
+                </a>
                 <h3 className="text-sm font-semibold text-brand-gold-700">
-                  {t(lang, foundation.foundationKey)}
+                  <a
+                    href={foundation.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-brand-gold-500"
+                  >
+                    {t(lang, foundation.foundationKey)}
+                  </a>
                 </h3>
               </div>
 
@@ -61,7 +113,7 @@ export function DonationSection({ lang }: DonationSectionProps) {
                     key={acc.number}
                     className="flex items-center gap-3 rounded-xl bg-brand-cream/60 px-4 py-3"
                   >
-                    <img src={acc.icon} alt="" className="h-7 w-7 shrink-0 rounded-full" />
+                    <img src={acc.icon} alt="" className="h-7 w-7 shrink-0 rounded-lg" />
                     <div className="min-w-0 flex-1">
                       <p className="text-xs text-brand-text-muted">
                         {t(lang, acc.bankKey)}
@@ -70,6 +122,7 @@ export function DonationSection({ lang }: DonationSectionProps) {
                         {acc.number}
                       </p>
                     </div>
+                    <CopyButton text={acc.number} lang={lang} />
                   </div>
                 ))}
               </div>
@@ -83,6 +136,7 @@ export function DonationSection({ lang }: DonationSectionProps) {
             <span className="font-medium">{t(lang, "donation.swift")}:</span>{" "}
             <span className="font-mono font-semibold tracking-wider text-brand-dark">{SWIFT_CODE}</span>
           </p>
+          <CopyButton text={SWIFT_CODE} lang={lang} />
         </div>
       </div>
     </section>

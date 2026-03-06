@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Toaster } from "sonner";
 import { OrganizationLd } from "~/components/JsonLd";
 import { QueryProvider } from "~/components/QueryProvider";
 import appCss from "~/global.css?url";
@@ -52,6 +53,17 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         <QueryProvider>{children}</QueryProvider>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            className: "font-sans",
+            style: {
+              background: "#FAF8F5",
+              border: "1px solid rgba(200, 169, 81, 0.3)",
+              color: "#1A1A1A",
+            },
+          }}
+        />
         <OrganizationLd
           name="โพธิธรรมญาณสถานเตชะชัยสิทธิ"
           url="https://bodhidhammayan.org"

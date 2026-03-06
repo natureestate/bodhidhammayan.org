@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { Mail, Phone, Facebook, ArrowUp } from "lucide-react";
 import type { Language } from "@bodhidhammayan/api-client";
 import { t, PAGE_URL_MAP } from "@bodhidhammayan/api-client";
-import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 
 interface FooterProps {
@@ -143,17 +142,15 @@ export function Footer({ lang }: FooterProps) {
 
         <div className="flex items-center justify-between">
           <p className="text-xs text-white/40">
-            {t(lang, "footer.copyright")}
+            {t(lang, "footer.copyright")} bodhidhammayan.org
           </p>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full border border-brand-gold-500/30 text-brand-gold-400 hover:bg-brand-gold-500/10 hover:text-brand-gold-300"
+          <button
             onClick={scrollToTop}
+            className="inline-flex items-center gap-2 rounded-full border border-brand-gold-500/30 px-4 py-2 text-sm text-brand-gold-400 transition-colors hover:bg-brand-gold-500/10 hover:text-brand-gold-300"
           >
             <ArrowUp className="h-4 w-4" />
-            <span className="sr-only">Back to top</span>
-          </Button>
+            <span>{lang === "th" ? "กลับด้านบน" : "Back to top"}</span>
+          </button>
         </div>
       </div>
     </footer>

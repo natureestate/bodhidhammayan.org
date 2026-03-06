@@ -2,14 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Menu,
-  Home,
   User,
   BookOpen,
   MapPin,
   Sparkles,
   Newspaper,
   ChevronDown,
-  ExternalLink,
 } from "lucide-react";
 import type { Language } from "@bodhidhammayan/api-client";
 import { t, PAGE_URL_MAP } from "@bodhidhammayan/api-client";
@@ -45,7 +43,6 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { key: "nav.home", page: "home", icon: <Home className="h-4 w-4" /> },
   { key: "nav.about", page: "about", icon: <User className="h-4 w-4" /> },
   { key: "nav.master", page: "master", icon: <User className="h-4 w-4" /> },
   {
@@ -97,23 +94,23 @@ export function Navbar({ lang }: NavbarProps) {
             return (
               <div key={item.key} className="group relative">
                 {hasMega ? (
-                  <button className="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium text-brand-text-secondary transition-colors hover:bg-brand-gold-50 hover:text-brand-gold-700">
-                    <span className="hidden group-hover:inline-flex">{item.icon}</span>
+                  <button className="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium text-brand-text-secondary transition-all duration-300 ease-out hover:bg-brand-gold-50 hover:text-brand-gold-700">
+                    <span className="inline-flex w-0 overflow-hidden opacity-0 transition-all duration-300 ease-out group-hover:w-5 group-hover:opacity-100">{item.icon}</span>
                     <span>{t(lang, item.key)}</span>
-                    <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
+                    <ChevronDown className="h-3 w-3 transition-transform duration-300 ease-out group-hover:rotate-180" />
                   </button>
                 ) : (
                   <Link
                     to={url!}
-                    className="group/link inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium text-brand-text-secondary transition-colors hover:bg-brand-gold-50 hover:text-brand-gold-700"
+                    className="group/link inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium text-brand-text-secondary transition-all duration-300 ease-out hover:bg-brand-gold-50 hover:text-brand-gold-700"
                   >
-                    <span className="hidden group-hover/link:inline-flex">{item.icon}</span>
+                    <span className="inline-flex w-0 overflow-hidden opacity-0 transition-all duration-300 ease-out group-hover/link:w-5 group-hover/link:opacity-100">{item.icon}</span>
                     <span>{t(lang, item.key)}</span>
                   </Link>
                 )}
 
                 {hasMega && (
-                  <div className="invisible absolute left-0 top-full z-50 min-w-[240px] rounded-xl border border-brand-gold-100/50 bg-white p-3 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100">
+                  <div className="invisible absolute left-0 top-full z-50 min-w-[240px] translate-y-2 rounded-xl border border-brand-gold-100/50 bg-white p-3 opacity-0 shadow-xl transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                     <div className="space-y-1">
                       {item.mega!.map((child) => {
                         const childUrl =
