@@ -2,39 +2,20 @@ import { Link } from "@tanstack/react-router";
 import type { Language } from "@bodhidhammayan/api-client";
 import { t, PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { Compass, Brain, Sparkles } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
+import { courses } from "~/data/seed-courses";
 
 interface CourseTypesSectionProps {
   lang: Language;
 }
 
-const courses = [
-  {
-    icon: Compass,
-    titleKey: "course.journey",
-    titleEnKey: "course.journeyEn",
-    durationKey: "course.journeyDuration",
-    image: "/images/teachings/meditation-more-than-you-think.webp",
-    page: "course-schedule",
-  },
-  {
-    icon: Brain,
-    titleKey: "course.anapanasati",
-    titleEnKey: "course.anapanasatiEn",
-    durationKey: "course.anapanasatiDuration",
-    image: "/images/teachings/dhamma-nature.webp",
-    page: "course-schedule",
-  },
-  {
-    icon: Sparkles,
-    titleKey: "course.vipassana",
-    titleEnKey: "course.vipassanaEn",
-    durationKey: "course.vipassanaDuration",
-    image: "/images/teachings/chanting-power.webp",
-    page: "course-schedule",
-  },
-];
+const courseIcons: Record<string, LucideIcon> = {
+  "course-jtm": Compass,
+  "course-anapanasati": Brain,
+  "course-vipassana": Sparkles,
+};
 
 export function CourseTypesSection({ lang }: CourseTypesSectionProps) {
   return (
@@ -46,15 +27,18 @@ export function CourseTypesSection({ lang }: CourseTypesSectionProps) {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => {
-            const Icon = course.icon;
-            const url = PAGE_URL_MAP[course.page]?.[lang] ?? "#";
+            const Icon = courseIcons[course.id] ?? Compass;
+            const url = PAGE_URL_MAP["course-schedule"]?.[lang] ?? "#";
+            const title = lang === "th" ? course.title : course.titleEn;
+            const subtitle = course.titleEn;
+            const duration = lang === "th" ? course.duration : course.durationEn;
             return (
-              <Link key={course.titleKey} to={url} className="group">
+              <Link key={course.id} to={url} className="group">
                 <Card className="overflow-hidden p-0 transition-all group-hover:shadow-lg group-hover:-translate-y-1">
                   <div className="aspect-video w-full bg-brand-cream">
                     <img
                       src={course.image}
-                      alt={t(lang, course.titleKey)}
+                      alt={title}
                       className="h-full w-full object-cover transition-transform group-hover:scale-105"
                       loading="lazy"
                     />
@@ -66,15 +50,15 @@ export function CourseTypesSection({ lang }: CourseTypesSectionProps) {
                       </div>
                       <div>
                         <h3 className="font-serif text-lg font-semibold text-brand-dark group-hover:text-brand-gold-600">
-                          {t(lang, course.titleKey)}
+                          {title}
                         </h3>
                         <p className="text-sm text-brand-text-secondary">
-                          {t(lang, course.titleEnKey)}
+                          {subtitle}
                         </p>
                       </div>
                     </div>
                     <Badge variant="nature" className="mt-3">
-                      {t(lang, course.durationKey)}
+                      {duration}
                     </Badge>
                   </CardContent>
                 </Card>

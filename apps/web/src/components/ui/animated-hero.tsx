@@ -56,7 +56,7 @@ function AnimatedHero({ lang }: AnimatedHeroProps) {
             <div className="flex flex-col gap-4">
               <h1 className="max-w-2xl font-serif text-4xl font-medium tracking-tight text-white/95 md:text-6xl lg:text-7xl">
                 <motion.span
-                  className="block text-brand-gold-400"
+                  className="block py-[25px] text-[50px] text-brand-gold-400"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
