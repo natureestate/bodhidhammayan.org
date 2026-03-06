@@ -13,12 +13,12 @@
 | Framework | [TanStack Start](https://tanstack.com/start) (Vite-based SSR) | v1.166+ |
 | Routing | [TanStack Router](https://tanstack.com/router) — File-based, Type-safe | v1.166+ |
 | Data Fetching | [TanStack Query](https://tanstack.com/query) | v5.67+ |
-| UI Components | [Radix UI](https://radix-ui.com) + [Tailwind CSS v4](https://tailwindcss.com) | v4.1+ |
+| UI Components | [shadcn/ui](https://ui.shadcn.com) ([Radix UI](https://radix-ui.com) + [Tailwind CSS v4](https://tailwindcss.com)) | v4.1+ |
 | Animation | [Framer Motion](https://motion.dev) | v12+ |
 | Icons | [Lucide React](https://lucide.dev) | v0.477+ |
 | CMS | [Sanity Studio v3](https://sanity.io) | v3.77+ |
 | Validation | [Zod](https://zod.dev) | v3.24+ |
-| Deployment | [Cloudflare Pages](https://pages.cloudflare.com) (Edge Runtime) | - |
+| Deployment | [Cloudflare Workers](https://workers.cloudflare.com) (Edge Runtime) | - |
 | Monorepo | [Turborepo](https://turbo.build) + [pnpm](https://pnpm.io) | Turbo v2.4+ |
 | Language | TypeScript (strict mode) | v5.8+ |
 | Runtime | Node.js | >= 20 |

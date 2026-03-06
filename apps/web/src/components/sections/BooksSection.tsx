@@ -51,7 +51,6 @@ export function BooksSection({ lang }: BooksSectionProps) {
   const isPausedRef = useRef(false);
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(true);
-  const isTouchDevice = useRef(false);
 
   const updateFadeIndicators = useCallback(() => {
     const el = scrollRef.current;
@@ -60,11 +59,6 @@ export function BooksSection({ lang }: BooksSectionProps) {
     setShowRightFade(el.scrollLeft < el.scrollWidth - el.clientWidth - 8);
   }, []);
 
-  useEffect(() => {
-    isTouchDevice.current = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-  }, []);
-
-  // auto-scroll เฉพาะ desktop — บน mobile ให้ผู้ใช้ swipe เอง
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -75,7 +69,7 @@ export function BooksSection({ lang }: BooksSectionProps) {
     function step() {
       if (!container) return;
 
-      if (isTouchDevice.current || isPausedRef.current) {
+      if (isPausedRef.current) {
         animationId = requestAnimationFrame(step);
         return;
       }
@@ -92,8 +86,21 @@ export function BooksSection({ lang }: BooksSectionProps) {
     return () => cancelAnimationFrame(animationId);
   }, [updateFadeIndicators]);
 
-  const pause = useCallback(() => { isPausedRef.current = true; }, []);
-  const resume = useCallback(() => { isPausedRef.current = false; }, []);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  const pause = useCallback(() => {
+    clearTimeout(resumeTimerRef.current);
+    isPausedRef.current = true;
+  }, []);
+
+  const resume = useCallback(() => {
+    isPausedRef.current = false;
+  }, []);
+
+  const resumeAfterDelay = useCallback(() => {
+    clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(resume, 2000);
+  }, [resume]);
 
   const scrollBy = useCallback((direction: "left" | "right") => {
     const el = scrollRef.current;
@@ -103,7 +110,7 @@ export function BooksSection({ lang }: BooksSectionProps) {
     setTimeout(updateFadeIndicators, 350);
   }, [updateFadeIndicators]);
 
-  const duplicatedBooks = isTouchDevice.current ? seedBooks : [...seedBooks, ...seedBooks];
+  const duplicatedBooks = [...seedBooks, ...seedBooks];
 
   return (
     <section className="bg-brand-cream section-padding py-16 md:py-20">
@@ -147,7 +154,7 @@ export function BooksSection({ lang }: BooksSectionProps) {
             onMouseEnter={pause}
             onMouseLeave={resume}
             onTouchStart={pause}
-            onTouchEnd={resume}
+            onTouchEnd={resumeAfterDelay}
             onScroll={updateFadeIndicators}
           >
             <div className="flex gap-3 md:gap-4">
