@@ -1,7 +1,6 @@
 import type { Language } from "@bodhidhammayan/api-client";
 import { t } from "@bodhidhammayan/api-client";
 import { BookOpen } from "lucide-react";
-import { Card, CardContent } from "~/components/ui/card";
 
 interface BooksSectionProps {
   lang: Language;
@@ -21,36 +20,34 @@ const books = [
 
 export function BooksSection({ lang }: BooksSectionProps) {
   return (
-    <section className="bg-brand-cream section-padding py-20 md:py-28">
+    <section className="bg-brand-cream section-padding py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <h2 className="font-serif text-2xl font-bold text-brand-dark md:text-3xl lg:text-4xl">
           {t(lang, "section.books")}
         </h2>
 
-        <div className="mt-12 overflow-x-auto pb-4">
-          <div className="flex gap-4 md:gap-6">
+        <div className="mt-8 overflow-x-auto pb-4 scrollbar-thin">
+          <div className="flex gap-3 md:gap-4">
             {books.map((book) => (
-              <Card
+              <div
                 key={book.key}
-                className="min-w-[140px] shrink-0 overflow-hidden p-0 transition-all hover:-translate-y-1 hover:shadow-lg md:min-w-[160px]"
+                className="group w-[100px] shrink-0 md:w-[120px]"
               >
-                <div className="relative aspect-3/4 w-full bg-brand-cream">
+                <div className="relative aspect-3/4 w-full overflow-hidden rounded-lg bg-brand-cream shadow-sm transition-all group-hover:-translate-y-1 group-hover:shadow-md">
                   <img
                     src={book.image}
                     alt={t(lang, book.key)}
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 flex items-end bg-linear-to-t from-brand-dark/70 to-transparent p-3">
-                    <BookOpen className="h-5 w-5 text-brand-gold-300" aria-hidden />
+                  <div className="absolute inset-0 flex items-end bg-linear-to-t from-brand-dark/60 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
+                    <BookOpen className="h-4 w-4 text-brand-gold-300" aria-hidden />
                   </div>
                 </div>
-                <CardContent className="p-3">
-                  <p className="line-clamp-3 text-sm font-medium text-brand-dark">
-                    {t(lang, book.key)}
-                  </p>
-                </CardContent>
-              </Card>
+                <p className="mt-2 line-clamp-2 text-xs font-medium text-brand-dark">
+                  {t(lang, book.key)}
+                </p>
+              </div>
             ))}
           </div>
         </div>

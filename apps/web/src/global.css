@@ -55,9 +55,9 @@
   --color-nature-950: #0d2214;
 
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
+  --font-serif: "IBM Plex Sans Thai", "Inter", sans-serif;
   --font-thai: "Sarabun", "Noto Sans Thai", sans-serif;
-  --font-display: "Playfair Display", Georgia, serif;
+  --font-display: "IBM Plex Sans Thai", "Inter", sans-serif;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -80,13 +80,17 @@
   }
 
   body {
-    font-family: var(--font-sans);
+    font-family: var(--font-thai), var(--font-sans);
     color: var(--color-brand-dark);
     background-color: #fff;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
+  }
+
+  :lang(en) {
+    font-family: var(--font-sans);
   }
 
   ::selection {
