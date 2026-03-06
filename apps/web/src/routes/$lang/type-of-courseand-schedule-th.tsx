@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent } from "~/components/ui/card";
 import { MapPin, CheckCircle, ChevronRight, ArrowLeft } from "lucide-react";
@@ -49,6 +50,7 @@ function TypeOfCourseAndScheduleThPage() {
           },
         ]}
       />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "ประเภทคอร์ส" }]} />
 
       {!selectedCourse ? (
         <CourseSelectionView onSelect={setSelectedCourse} />

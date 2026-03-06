@@ -3,6 +3,7 @@ import { MapPin } from "lucide-react";
 import { PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { Card, CardContent } from "~/components/ui/card";
 import { siteConfig } from "~/data";
 
@@ -51,6 +52,7 @@ function PlaceThPage() {
           { name: "สถานที่ปฏิบัติธรรม", url: "/th/placeth/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "สถานที่ปฏิบัติธรรม" }]} />
 
       <div className="relative bg-brand-dark px-4 py-20">
         <img

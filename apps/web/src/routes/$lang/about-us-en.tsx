@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SeoHead } from "~/components/SeoHead";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { BreadcrumbLd } from "~/components/JsonLd";
 import { siteConfig } from "~/data";
 
@@ -21,6 +22,7 @@ function AboutUsEnPage() {
           { name: "About Us", url: "/en/about-us-en/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "Home", href: "/en/homeen/" }, { label: "About Us" }]} />
 
       <div className="relative bg-brand-dark px-4 py-20">
         <img

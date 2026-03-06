@@ -2,6 +2,7 @@ import { Outlet, createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
+import { ReadingProgressBar } from "~/components/ReadingProgressBar";
 
 const langSchema = z.object({
   lang: z.enum(["th", "en"]),
@@ -17,6 +18,7 @@ function LangLayout() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <ReadingProgressBar />
       <Navbar lang={lang} />
       <main className="flex-1 pt-16">
         <Outlet />

@@ -3,6 +3,7 @@ import { CheckCircle } from "lucide-react";
 import { PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { Button } from "~/components/ui/button";
 import { siteConfig } from "~/data";
 
@@ -46,6 +47,7 @@ function RegisterEmailThPage() {
           { name: "สมัครคอร์ส", url: "/th/register-email-th/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "สมัครคอร์สปฏิบัติธรรม" }]} />
 
       <div className="relative bg-brand-dark px-4 py-20">
         <img

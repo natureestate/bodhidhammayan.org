@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { siteConfig } from "~/data";
 
 export const Route = createFileRoute("/$lang/about-us-th")({
@@ -21,6 +22,7 @@ function AboutUsThPage() {
           { name: "เกี่ยวกับเรา", url: "/th/about-us-th/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "เกี่ยวกับเรา" }]} />
 
       <div className="relative bg-brand-dark px-4 py-20">
         <img

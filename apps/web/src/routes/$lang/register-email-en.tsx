@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle } from "lucide-react";
 import { PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { BreadcrumbLd } from "~/components/JsonLd";
 import { Button } from "~/components/ui/button";
 import { siteConfig } from "~/data";
@@ -46,6 +47,7 @@ function RegisterEmailEnPage() {
           { name: "Register", url: "/en/register-email-en/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "Home", href: "/en/homeen/" }, { label: "Register for Courses" }]} />
 
       <div className="relative bg-brand-dark px-4 py-20">
         <img

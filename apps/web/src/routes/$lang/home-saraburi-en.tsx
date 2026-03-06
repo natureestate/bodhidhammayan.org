@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { BreadcrumbLd } from "~/components/JsonLd";
 import { Badge } from "~/components/ui/badge";
 import { ExternalLink } from "lucide-react";
@@ -31,6 +32,7 @@ function HomeSaraburiEnPage() {
           { name: "Bodhi Dhammayan Retreat Saraburi", url: "/en/home-saraburi-en/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "Home", href: "/en/homeen/" }, { label: "Saraburi" }]} />
 
       <section className="relative bg-brand-dark">
         <div className="aspect-video max-h-[480px] w-full">

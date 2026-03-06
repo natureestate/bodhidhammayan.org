@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { Badge } from "~/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import { getLocationBySlug } from "~/data/seed-locations";
@@ -31,6 +32,7 @@ function HomeSaraburiThPage() {
           { name: "โพธิธรรมญาณสถาน สระบุรี", url: "/th/home-saraburi-th/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "สระบุรี" }]} />
 
       <section className="relative bg-brand-dark">
         <div className="aspect-video max-h-[480px] w-full">

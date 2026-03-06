@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd, ArticleLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { getPostBySlug } from "~/data";
 
 export const Route = createFileRoute("/$lang/$slug")({
@@ -59,6 +60,13 @@ function PostPage() {
         description={post.excerpt}
         url={postUrl}
         publishedAt={post.date}
+      />
+      <Breadcrumb
+        items={[
+          { label: lang === "th" ? "หน้าแรก" : "Home", href: `/${lang}/${lang === "th" ? "hometh" : "homeen"}/` },
+          { label: cat.label, href: `/${lang}/${cat.path}/` },
+          { label: post.title },
+        ]}
       />
 
       <article className="mx-auto max-w-4xl px-4 py-16">

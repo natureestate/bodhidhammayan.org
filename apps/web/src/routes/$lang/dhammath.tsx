@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getPosts } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { PostListPage } from "~/components/PostListPage";
 
 export const Route = createFileRoute("/$lang/dhammath")({
@@ -28,6 +29,7 @@ function DhammaThPage() {
           { name: "รวมธรรมคำสอน", url: "/th/dhammath/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "รวมธรรมคำสอน" }]} />
       <PostListPage
         category="dhamma"
         lang={lang}

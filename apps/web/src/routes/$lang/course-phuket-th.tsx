@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 
 export const Route = createFileRoute("/$lang/course-phuket-th")({
   component: CoursePhuketThPage,
@@ -24,6 +25,7 @@ function CoursePhuketThPage() {
           { name: "ตารางคอร์ส ภูเก็ต", url: "/th/course-phuket-th/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "คอร์ส" }, { label: "ภูเก็ต" }]} />
       <section className="mx-auto max-w-6xl px-4 py-16">
         <h1 className="font-serif text-3xl font-bold text-brand-dark">
           ตารางคอร์สปฏิบัติธรรม ภูเก็ต

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import { PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { BreadcrumbLd } from "~/components/JsonLd";
 import { Card, CardContent } from "~/components/ui/card";
 import { siteConfig } from "~/data";
@@ -51,6 +52,7 @@ function PlaceEnPage() {
           { name: "Retreat Locations", url: "/en/placeen/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "Home", href: "/en/homeen/" }, { label: "Retreat Locations" }]} />
 
       <div className="relative bg-brand-dark px-4 py-20">
         <img

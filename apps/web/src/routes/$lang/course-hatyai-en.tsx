@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SeoHead } from "~/components/SeoHead";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { BreadcrumbLd } from "~/components/JsonLd";
 
 export const Route = createFileRoute("/$lang/course-hatyai-en")({
@@ -24,6 +25,7 @@ function CourseHatYaiEnPage() {
           { name: "Course Schedule Hat Yai", url: "/en/course-hatyai-en/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "Home", href: "/en/homeen/" }, { label: "Courses" }, { label: "Hat Yai" }]} />
       <section className="mx-auto max-w-6xl px-4 py-16">
         <h1 className="font-serif text-3xl font-bold text-brand-dark">
           Meditation Course Schedule Hat Yai

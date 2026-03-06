@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Facebook, Youtube, Instagram, Music2 } from "lucide-react";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { Button } from "~/components/ui/button";
 import { master, siteConfig } from "~/data";
 
@@ -30,6 +31,7 @@ function MasterThPage() {
           { name: "ท่านอาจารย์อัจฉราวดี วงศ์สกล", url: "/th/masterth/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "ท่านอาจารย์อัจฉราวดี วงศ์สกล" }]} />
 
       <section className="mx-auto max-w-5xl px-4 py-16">
         <div className="flex flex-col gap-10 md:flex-row md:items-start">

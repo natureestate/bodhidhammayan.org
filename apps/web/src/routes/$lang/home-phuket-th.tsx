@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { Badge } from "~/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import { getLocationBySlug } from "~/data/seed-locations";
@@ -23,6 +24,7 @@ function HomePhuketThPage() {
         alternateUrls={{ th: "/th/home-phuket-th/", en: "/en/home-phuket-en/" }}
       />
       <BreadcrumbLd items={[{ name: "หน้าแรก", url: "/th/hometh/" }, { name: "โพธิธรรมญาณสถาน ภูเก็ต", url: "/th/home-phuket-th/" }]} />
+      <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "ภูเก็ต" }]} />
 
       <section className="relative bg-brand-dark">
         <div className="aspect-video max-h-[480px] w-full">

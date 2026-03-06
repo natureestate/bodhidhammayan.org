@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getPosts } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { BreadcrumbLd } from "~/components/JsonLd";
 import { PostListPage } from "~/components/PostListPage";
 
@@ -28,6 +29,7 @@ function ExperienceEnPage() {
           { name: "Experience & Testimonials", url: "/en/experience-en/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "Home", href: "/en/homeen/" }, { label: "Experience & Testimonials" }]} />
       <PostListPage
         category="experience"
         lang={lang}

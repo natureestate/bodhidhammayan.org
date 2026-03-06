@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Facebook, Youtube, Instagram, Music2 } from "lucide-react";
 import { SeoHead } from "~/components/SeoHead";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import { BreadcrumbLd } from "~/components/JsonLd";
 import { Button } from "~/components/ui/button";
 import { master, siteConfig } from "~/data";
@@ -30,6 +31,7 @@ function MasterEnPage() {
           { name: "Master Acharavadee Wongsakon", url: "/en/masteren/" },
         ]}
       />
+      <Breadcrumb items={[{ label: "Home", href: "/en/homeen/" }, { label: "Master Acharavadee Wongsakon" }]} />
 
       <section className="mx-auto max-w-5xl px-4 py-16">
         <div className="flex flex-col gap-10 md:flex-row md:items-start">
