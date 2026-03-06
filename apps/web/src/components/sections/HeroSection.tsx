@@ -1,0 +1,33 @@
+import { Link } from "@tanstack/react-router";
+import type { Language } from "@bodhidhammayan/api-client";
+import { t, PAGE_URL_MAP } from "@bodhidhammayan/api-client";
+import { Button } from "~/components/ui/button";
+
+interface HeroSectionProps {
+  lang: Language;
+}
+
+export function HeroSection({ lang }: HeroSectionProps) {
+  const registerUrl = PAGE_URL_MAP.register?.[lang] ?? "#";
+
+  return (
+    <section className="relative min-h-[70vh] bg-dharma-950 px-4 py-16 md:min-h-[80vh] md:py-24">
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-dharma-900/80 via-dharma-950 to-dharma-950"
+        aria-hidden
+      />
+
+      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
+        <h1 className="font-display text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+          {t(lang, "hero.title")}
+        </h1>
+        <p className="mt-4 font-thai text-base text-dharma-200 md:text-lg">
+          {t(lang, "hero.subtitle")}
+        </p>
+        <Button size="xl" className="mt-8" asChild>
+          <Link to={registerUrl}>{t(lang, "cta.register")}</Link>
+        </Button>
+      </div>
+    </section>
+  );
+}

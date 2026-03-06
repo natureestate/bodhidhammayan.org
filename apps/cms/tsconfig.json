@@ -1,0 +1,4 @@
+{
+  "extends": "@bodhidhammayan/ts-config/react.json",
+  "include": ["**/*.ts", "**/*.tsx"]
+}

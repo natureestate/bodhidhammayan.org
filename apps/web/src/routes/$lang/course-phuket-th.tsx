@@ -1,0 +1,37 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SeoHead } from "~/components/SeoHead";
+import { BreadcrumbLd } from "~/components/JsonLd";
+
+export const Route = createFileRoute("/$lang/course-phuket-th")({
+  component: CoursePhuketThPage,
+});
+
+function CoursePhuketThPage() {
+  return (
+    <>
+      <SeoHead
+        title="ตารางคอร์สปฏิบัติธรรม ภูเก็ต - โพธิธรรมญาณสถาน"
+        description="ตารางคอร์สปฏิบัติธรรม ณ โพธิธรรมญาณสถาน ภูเก็ต"
+        canonical="/th/course-phuket-th/"
+        alternateUrls={{
+          th: "/th/course-phuket-th/",
+          en: "/en/course-phuket-en/",
+        }}
+      />
+      <BreadcrumbLd
+        items={[
+          { name: "หน้าแรก", url: "/th/hometh/" },
+          { name: "ตารางคอร์ส ภูเก็ต", url: "/th/course-phuket-th/" },
+        ]}
+      />
+      <section className="mx-auto max-w-6xl px-4 py-16">
+        <h1 className="font-display text-3xl font-bold text-dharma-900">
+          ตารางคอร์สปฏิบัติธรรม ภูเก็ต
+        </h1>
+        <p className="mt-4 text-dharma-600">
+          เนื้อหาจะถูกดึงจาก Sanity CMS
+        </p>
+      </section>
+    </>
+  );
+}

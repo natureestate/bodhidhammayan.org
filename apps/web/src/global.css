@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold-50: #fdf8ef;
+  --color-gold-100: #faefd9;
+  --color-gold-200: #f4dbb2;
+  --color-gold-300: #edc481;
+  --color-gold-400: #e4a44e;
+  --color-gold-500: #dd8d2c;
+  --color-gold-600: #ce7422;
+  --color-gold-700: #ab591e;
+  --color-gold-800: #894720;
+  --color-gold-900: #6f3b1d;
+  --color-gold-950: #3c1d0d;
+
+  --color-dharma-50: #f6f5f0;
+  --color-dharma-100: #e8e5d8;
+  --color-dharma-200: #d3cdb4;
+  --color-dharma-300: #b9af89;
+  --color-dharma-400: #a49766;
+  --color-dharma-500: #958758;
+  --color-dharma-600: #806e4a;
+  --color-dharma-700: #68573d;
+  --color-dharma-800: #584937;
+  --color-dharma-900: #4d4032;
+  --color-dharma-950: #2c231a;
+
+  --color-nature-50: #f0f9f1;
+  --color-nature-100: #dbf0de;
+  --color-nature-200: #b9e1c0;
+  --color-nature-300: #8bca97;
+  --color-nature-400: #5aad6a;
+  --color-nature-500: #38914c;
+  --color-nature-600: #28753b;
+  --color-nature-700: #215d31;
+  --color-nature-800: #1d4a29;
+  --color-nature-900: #193d23;
+  --color-nature-950: #0d2214;
+
+  --font-thai: "Sarabun", "Noto Sans Thai", sans-serif;
+  --font-display: "Prompt", "Sarabun", sans-serif;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+}
+
+@layer base {
+  body {
+    font-family: var(--font-thai);
+    @apply text-dharma-900 bg-white antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}

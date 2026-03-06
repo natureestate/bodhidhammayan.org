@@ -1,35 +1,11 @@
-# Dependencies
 node_modules/
-.pnpm-store/
-
-# Build outputs
-dist/
 .output/
+dist/
+.turbo/
 .vinxi/
-.nitro/
-.cache/
-
-# Environment
 .env
 .env.local
 .env.*.local
-.dev.vars
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
+*.log
 .DS_Store
-Thumbs.db
-
-# Turbo
-.turbo/
-
-# Sanity
 .sanity/
-
-# Cloudflare
-.wrangler/
