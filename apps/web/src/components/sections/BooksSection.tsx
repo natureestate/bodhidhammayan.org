@@ -64,25 +64,40 @@ export function BooksSection({ lang }: BooksSectionProps) {
     if (!container) return;
 
     let animationId: number;
-    const speed = 0.5;
+    const pxPerSecond = 30;
+    let lastTime = 0;
+    let accumulator = 0;
 
-    function step() {
+    function step(timestamp: number) {
       if (!container) return;
 
       if (isPausedRef.current) {
+        lastTime = timestamp;
         animationId = requestAnimationFrame(step);
         return;
       }
 
-      container.scrollLeft += speed;
-      if (container.scrollLeft >= container.scrollWidth / 2) {
-        container.scrollLeft = 0;
+      if (lastTime === 0) lastTime = timestamp;
+      const delta = Math.min(timestamp - lastTime, 100);
+      lastTime = timestamp;
+
+      accumulator += (pxPerSecond * delta) / 1000;
+      const move = Math.floor(accumulator);
+
+      if (move >= 1) {
+        accumulator -= move;
+        container.scrollLeft += move;
+
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+          container.scrollLeft = 0;
+        }
+        updateFadeIndicators();
       }
-      updateFadeIndicators();
+
       animationId = requestAnimationFrame(step);
     }
 
-    animationId = requestAnimationFrame(step);
+    animationId = requestAnimationFrame((ts) => { lastTime = ts; step(ts); });
     return () => cancelAnimationFrame(animationId);
   }, [updateFadeIndicators]);
 
