@@ -1,22 +1,23 @@
 import type { Language } from "@bodhidhammayan/api-client";
 import { t } from "@bodhidhammayan/api-client";
 import { BookOpen } from "lucide-react";
+import { books as seedBooks } from "~/data";
 
 interface BooksSectionProps {
   lang: Language;
 }
 
-const books = [
-  { key: "book.teun", image: "/images/teachings/heavy-light-mind.webp" },
-  { key: "book.global", image: "/images/teachings/merit-much-little.webp" },
-  { key: "book.gharavasa2", image: "/images/teachings/dhamma-nature.webp" },
-  { key: "book.gharavasa", image: "/images/teachings/chanting-power.webp" },
-  { key: "book.sinchad", image: "/images/teachings/meditation-more-than-you-think.webp" },
-  { key: "book.rooluey", image: "/images/teachings/kilesa-fear.webp" },
-  { key: "book.vipassana", image: "/images/teachings/goodness-correctness.webp" },
-  { key: "book.techo", image: "/images/teachings/keep-balance.webp" },
-  { key: "book.misil", image: "/images/teachings/heavy-light-mind.webp" },
-];
+const bookImages: Record<string, string> = {
+  "book-01": "/images/teachings/heavy-light-mind.webp",
+  "book-02": "/images/teachings/merit-much-little.webp",
+  "book-03": "/images/teachings/dhamma-nature.webp",
+  "book-04": "/images/teachings/chanting-power.webp",
+  "book-05": "/images/teachings/meditation-more-than-you-think.webp",
+  "book-06": "/images/teachings/kilesa-fear.webp",
+  "book-07": "/images/teachings/goodness-correctness.webp",
+  "book-08": "/images/teachings/keep-balance.webp",
+  "book-09": "/images/teachings/heavy-light-mind.webp",
+};
 
 export function BooksSection({ lang }: BooksSectionProps) {
   return (
@@ -26,17 +27,17 @@ export function BooksSection({ lang }: BooksSectionProps) {
           {t(lang, "section.books")}
         </h2>
 
-        <div className="mt-8 overflow-x-auto pb-4 scrollbar-thin">
+        <div className="mt-8 overflow-x-auto pb-4">
           <div className="flex gap-3 md:gap-4">
-            {books.map((book) => (
+            {seedBooks.map((book) => (
               <div
-                key={book.key}
+                key={book.id}
                 className="group w-[100px] shrink-0 md:w-[120px]"
               >
                 <div className="relative aspect-3/4 w-full overflow-hidden rounded-lg bg-brand-cream shadow-sm transition-all group-hover:-translate-y-1 group-hover:shadow-md">
                   <img
-                    src={book.image}
-                    alt={t(lang, book.key)}
+                    src={bookImages[book.id] ?? "/images/teachings/heavy-light-mind.webp"}
+                    alt={lang === "en" && book.titleEn ? book.titleEn : book.title}
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />
@@ -45,7 +46,7 @@ export function BooksSection({ lang }: BooksSectionProps) {
                   </div>
                 </div>
                 <p className="mt-2 line-clamp-2 text-xs font-medium text-brand-dark">
-                  {t(lang, book.key)}
+                  {lang === "en" && book.titleEn ? book.titleEn : book.title}
                 </p>
               </div>
             ))}

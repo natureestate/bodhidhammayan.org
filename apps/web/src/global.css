@@ -56,7 +56,7 @@
 
   --font-sans: "Inter", system-ui, sans-serif;
   --font-serif: "IBM Plex Sans Thai", "Inter", sans-serif;
-  --font-thai: "Sarabun", "Noto Sans Thai", sans-serif;
+  --font-thai: "IBM Plex Sans Thai", "Inter", sans-serif;
   --font-display: "IBM Plex Sans Thai", "Inter", sans-serif;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;

@@ -88,7 +88,7 @@ export function Navbar({ lang }: NavbarProps) {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden items-center gap-1 font-serif lg:flex">
           {navItems.map((item) => {
             const hasMega = !!item.mega;
             const url = PAGE_URL_MAP[item.page]?.[lang];
