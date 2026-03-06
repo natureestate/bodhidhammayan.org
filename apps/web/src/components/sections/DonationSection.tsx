@@ -10,15 +10,15 @@ const donationAccounts = [
   {
     foundationKey: "donation.foundation1",
     accounts: [
-      { bankKey: "donation.kbank", number: "003-2-79877-4", color: "bg-emerald-600" },
-      { bankKey: "donation.scb", number: "428-179929-8", color: "bg-purple-700" },
+      { bankKey: "donation.kbank", number: "003-2-79877-4", icon: "/images/banks/kbank.svg" },
+      { bankKey: "donation.scb", number: "428-179929-8", icon: "/images/banks/scb.svg" },
     ],
   },
   {
     foundationKey: "donation.foundation2",
     accounts: [
-      { bankKey: "donation.kbank", number: "003-2-41586-7", color: "bg-emerald-600" },
-      { bankKey: "donation.scb", number: "428-179580-4", color: "bg-purple-700" },
+      { bankKey: "donation.kbank", number: "003-2-41586-7", icon: "/images/banks/kbank.svg" },
+      { bankKey: "donation.scb", number: "428-179580-4", icon: "/images/banks/scb.svg" },
     ],
   },
 ];
@@ -61,7 +61,7 @@ export function DonationSection({ lang }: DonationSectionProps) {
                     key={acc.number}
                     className="flex items-center gap-3 rounded-xl bg-brand-cream/60 px-4 py-3"
                   >
-                    <span className={`h-2 w-2 shrink-0 rounded-full ${acc.color}`} />
+                    <img src={acc.icon} alt="" className="h-7 w-7 shrink-0 rounded-full" />
                     <div className="min-w-0 flex-1">
                       <p className="text-xs text-brand-text-muted">
                         {t(lang, acc.bankKey)}

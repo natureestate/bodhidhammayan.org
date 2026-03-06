@@ -63,7 +63,7 @@ export const siteConfig = {
     logo: "/images/logos/logo-th.webp",
     knowingBuddhaLogo: "/images/logos/knowing-buddha-logo.webp",
     schoolOfLifeLogo: "/images/logos/school-of-life-logo.webp",
-    hero: "/images/hero/bodhidhammayan-hero.webp",
+    hero: "/images/hero/bodhi-tree-master-students.webp",
   },
 } as const;
 

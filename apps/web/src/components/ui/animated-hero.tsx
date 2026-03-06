@@ -41,18 +41,6 @@ function AnimatedHero({ lang }: AnimatedHeroProps) {
       <div className="relative z-10 flex min-h-[85vh] flex-col items-center justify-center px-4 text-center md:min-h-screen">
         <div className="container mx-auto">
           <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <img
-                src={siteConfig.images.logo}
-                alt={t(lang, "meta.siteName")}
-                className="mx-auto h-16 w-auto opacity-90 md:h-20"
-              />
-            </motion.div>
-
             <div className="flex flex-col gap-4">
               <h1 className="max-w-2xl font-serif text-4xl font-medium tracking-tight text-white/95 md:text-6xl lg:text-7xl">
                 <motion.span
@@ -63,7 +51,7 @@ function AnimatedHero({ lang }: AnimatedHeroProps) {
                 >
                   {t(lang, "hero.title")}
                 </motion.span>
-                <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+                <span className="relative flex w-full justify-center overflow-hidden pt-2 pb-2.5 text-center md:pt-3 md:pb-5">
                   &nbsp;
                   {titles.map((title, index) => (
                     <motion.span
