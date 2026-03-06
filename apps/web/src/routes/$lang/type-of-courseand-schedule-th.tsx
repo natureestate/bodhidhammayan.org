@@ -53,11 +53,19 @@ function TypeOfCourseAndScheduleThPage() {
       <Breadcrumb items={[{ label: "หน้าแรก", href: "/th/hometh/" }, { label: "ประเภทคอร์ส" }]} />
 
       {!selectedCourse ? (
-        <CourseSelectionView onSelect={setSelectedCourse} />
+        <CourseSelectionView
+          onSelect={(c) => {
+            setSelectedCourse(c);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
       ) : (
         <CourseDetailView
           course={selectedCourse}
-          onBack={() => setSelectedCourse(null)}
+          onBack={() => {
+            setSelectedCourse(null);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
           onSelectCourse={(c) => {
             setSelectedCourse(c);
             window.scrollTo({ top: 0, behavior: "smooth" });

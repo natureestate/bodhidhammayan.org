@@ -53,11 +53,19 @@ function TypeOfCourseAndScheduleEnPage() {
       <Breadcrumb items={[{ label: "Home", href: "/en/homeen/" }, { label: "Course Types" }]} />
 
       {!selectedCourse ? (
-        <CourseSelectionView onSelect={setSelectedCourse} />
+        <CourseSelectionView
+          onSelect={(c) => {
+            setSelectedCourse(c);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
       ) : (
         <CourseDetailView
           course={selectedCourse}
-          onBack={() => setSelectedCourse(null)}
+          onBack={() => {
+            setSelectedCourse(null);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
           onSelectCourse={(c) => {
             setSelectedCourse(c);
             window.scrollTo({ top: 0, behavior: "smooth" });
