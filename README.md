@@ -197,7 +197,7 @@ pnpm build
 
 Output จะอยู่ที่ `apps/web/.output/`
 
-### Deploy ขึ้น Cloudflare Pages
+### Deploy ขึ้น Cloudflare Workers
 
 ```bash
 # วิธีที่ 1: ใช้ script
@@ -205,7 +205,7 @@ Output จะอยู่ที่ `apps/web/.output/`
 
 # วิธีที่ 2: manual
 cd apps/web
-pnpm exec wrangler pages deploy .output
+pnpm exec wrangler deploy
 ```
 
 ### Deploy Sanity Studio
@@ -231,8 +231,8 @@ pnpm deploy
 }
 ```
 
-- ใช้ **Cloudflare Pages** + **Workers** (Edge Runtime)
-- preset: `cloudflare-pages` ผ่าน TanStack Start
+- ใช้ **Cloudflare Workers** (Edge Runtime) พร้อม static assets
+- TanStack Start build เป็น Worker format (`dist/server/index.js` + `dist/client/`)
 - เปิด `nodejs_compat` สำหรับ compatibility
 - เปิด `observability` สำหรับ logging/tracing
 

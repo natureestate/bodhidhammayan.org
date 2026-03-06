@@ -23,12 +23,12 @@ if ! pnpm exec wrangler whoami &>/dev/null 2>&1; then
   pnpm exec wrangler login
 fi
 
-echo "→  กำลัง deploy ขึ้น Cloudflare Pages..."
+echo "→  กำลัง deploy ขึ้น Cloudflare Workers..."
 cd apps/web
-pnpm exec wrangler pages deploy .output
+pnpm exec wrangler deploy
 
 echo ""
 echo "============================================"
 echo "  ✓  Deploy สำเร็จ!"
-echo "  URL: https://bodhidhammayan.org"
+echo "  URL: https://bodhidhammayan.smeandme.workers.dev"
 echo "============================================"
