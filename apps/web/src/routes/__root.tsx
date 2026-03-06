@@ -16,7 +16,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#2c231a" },
+      { name: "theme-color", content: "#C8A951" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -28,7 +28,7 @@ export const Route = createRootRoute({
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico" },
     ],

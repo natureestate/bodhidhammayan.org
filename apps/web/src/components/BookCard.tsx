@@ -3,14 +3,10 @@ interface BookCardProps {
   coverUrl?: string;
 }
 
-/**
- * การ์ดแสดงหนังสือ/เอกสารสำหรับ carousel หรือ horizontal scroll
- * รองรับ responsive และใช้ custom colors (dharma-*)
- */
 export function BookCard({ title, coverUrl }: BookCardProps) {
   return (
     <div className="w-40 shrink-0 snap-start">
-      <div className="aspect-2/3 overflow-hidden rounded-lg bg-dharma-100 shadow-md">
+      <div className="aspect-2/3 overflow-hidden rounded-lg bg-brand-cream shadow-md transition-all hover:-translate-y-1 hover:shadow-lg">
         {coverUrl && (
           <img
             src={coverUrl}
@@ -20,7 +16,7 @@ export function BookCard({ title, coverUrl }: BookCardProps) {
           />
         )}
       </div>
-      <h3 className="mt-2 line-clamp-2 text-center text-sm font-medium text-dharma-800 font-display">
+      <h3 className="mt-2 line-clamp-2 text-center font-serif text-sm font-medium text-brand-dark">
         {title}
       </h3>
     </div>

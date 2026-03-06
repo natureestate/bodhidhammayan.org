@@ -6,25 +6,21 @@ interface LocationCardProps {
   href?: string;
 }
 
-/**
- * การ์ดแสดงสถานที่/สถานที่ปฏิบัติธรรม
- * รองรับ responsive และใช้ custom colors (gold-*, dharma-*)
- */
 export function LocationCard({ name, imageUrl, href }: LocationCardProps) {
   const inner = (
-    <div className="group overflow-hidden rounded-xl border border-dharma-100 bg-white transition-shadow hover:shadow-lg">
-      <div className="aspect-4/3 bg-dharma-100">
+    <div className="group overflow-hidden rounded-xl border border-brand-gold-100/50 bg-white transition-all hover:shadow-lg hover:-translate-y-1">
+      <div className="aspect-4/3 bg-brand-cream">
         {imageUrl && (
           <img
             src={imageUrl}
             alt={name}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-transform group-hover:scale-105"
             loading="lazy"
           />
         )}
       </div>
       <div className="p-4 text-center">
-        <h3 className="font-display text-lg font-semibold text-dharma-900 group-hover:text-gold-600">
+        <h3 className="font-serif text-lg font-semibold text-brand-dark group-hover:text-brand-gold-600">
           {name}
         </h3>
       </div>

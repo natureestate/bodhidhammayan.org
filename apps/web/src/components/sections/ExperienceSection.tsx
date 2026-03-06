@@ -14,21 +14,21 @@ export function ExperienceSection({ lang }: ExperienceSectionProps) {
   const posts = getPostsByCategory("testimonials").slice(0, 6);
 
   return (
-    <section className="bg-dharma-50 px-4 py-16 md:py-20">
+    <section className="bg-brand-cream section-padding py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-display text-2xl font-bold text-dharma-900 md:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-brand-dark md:text-3xl lg:text-4xl">
           {t(lang, "section.experience")}
         </h2>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <Link
               key={post.id}
               to={`/${lang}/${post.slug}`}
               className="group"
             >
-              <Card className="overflow-hidden p-0 transition-shadow group-hover:shadow-lg">
-                <div className="aspect-4/3 w-full bg-dharma-100">
+              <Card className="overflow-hidden p-0 transition-all group-hover:shadow-lg group-hover:-translate-y-1">
+                <div className="aspect-4/3 w-full bg-brand-cream">
                   {post.image && (
                     <img
                       src={post.image}
@@ -38,11 +38,11 @@ export function ExperienceSection({ lang }: ExperienceSectionProps) {
                     />
                   )}
                 </div>
-                <CardContent className="p-4">
-                  <p className="font-thai text-sm font-medium text-dharma-800 line-clamp-2 group-hover:text-gold-600">
+                <CardContent className="p-5">
+                  <p className="text-sm font-medium text-brand-dark line-clamp-2 group-hover:text-brand-gold-600">
                     {post.title}
                   </p>
-                  <p className="mt-1 font-thai text-xs text-dharma-500">
+                  <p className="mt-2 text-xs text-brand-text-muted">
                     {new Date(post.date).toLocaleDateString("th-TH", {
                       year: "numeric",
                       month: "long",
@@ -55,7 +55,7 @@ export function ExperienceSection({ lang }: ExperienceSectionProps) {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-12 text-center">
           <Button variant="outline" size="lg" asChild>
             <Link to={experienceUrl}>{t(lang, "cta.viewAll")}</Link>
           </Button>

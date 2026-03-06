@@ -25,10 +25,10 @@ function CourseSaraburiEnPage() {
         ]}
       />
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <h1 className="font-display text-3xl font-bold text-dharma-900">
+        <h1 className="font-serif text-3xl font-bold text-brand-dark">
           Meditation Course Schedule Saraburi
         </h1>
-        <p className="mt-4 text-dharma-600">
+        <p className="mt-4 text-brand-text-secondary">
           Content will be fetched from Sanity CMS
         </p>
       </section>

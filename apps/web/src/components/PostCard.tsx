@@ -8,10 +8,6 @@ interface PostCardProps {
   href: string;
 }
 
-/**
- * การ์ดแสดงโพสต์สำหรับรายการธรรมะ ข่าว หรือประสบการณ์
- * รองรับ responsive และใช้ custom colors (gold-*, dharma-*)
- */
 export function PostCard({
   title,
   excerpt,
@@ -22,25 +18,25 @@ export function PostCard({
   return (
     <Link
       to={href}
-      className="group block overflow-hidden rounded-xl border border-dharma-100 bg-white transition-shadow hover:shadow-lg"
+      className="group block overflow-hidden rounded-xl border border-brand-gold-100/50 bg-white transition-all hover:shadow-lg hover:-translate-y-1"
     >
-      <div className="aspect-video bg-dharma-100">
+      <div className="aspect-video bg-brand-cream">
         {imageUrl && (
           <img
             src={imageUrl}
             alt={title}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-transform group-hover:scale-105"
             loading="lazy"
           />
         )}
       </div>
-      <div className="p-4">
-        <time className="text-xs text-dharma-400">{date}</time>
-        <h3 className="mt-1 font-display text-lg font-semibold text-dharma-900 line-clamp-2 group-hover:text-gold-600">
+      <div className="p-5">
+        <time className="text-xs text-brand-text-muted">{date}</time>
+        <h3 className="mt-1 font-serif text-lg font-semibold text-brand-dark line-clamp-2 group-hover:text-brand-gold-600">
           {title}
         </h3>
         {excerpt && (
-          <p className="mt-2 line-clamp-2 text-sm text-dharma-500">{excerpt}</p>
+          <p className="mt-2 line-clamp-2 text-sm text-brand-text-secondary">{excerpt}</p>
         )}
       </div>
     </Link>

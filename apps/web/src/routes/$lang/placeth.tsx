@@ -52,17 +52,17 @@ function PlaceThPage() {
         ]}
       />
 
-      <div className="relative bg-dharma-950 px-4 py-20">
+      <div className="relative bg-brand-dark px-4 py-20">
         <img
           src={siteConfig.images.hero}
           alt="สถานที่ปฏิบัติธรรม"
           className="absolute inset-0 h-full w-full object-cover opacity-30"
         />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <h1 className="font-display text-3xl font-bold text-white md:text-4xl">
+          <h1 className="font-serif text-3xl font-bold text-white md:text-4xl">
             สถานที่ปฏิบัติธรรม
           </h1>
-          <p className="mt-4 font-thai text-lg text-dharma-200">
+          <p className="mt-4 font-thai text-lg text-white/70">
             สถานปฏิบัติธรรม 4 แห่งทั่วประเทศไทย
           </p>
         </div>
@@ -75,7 +75,7 @@ function PlaceThPage() {
             return (
               <Link key={loc.name} to={url} className="group">
                 <Card className="overflow-hidden p-0 transition-shadow group-hover:shadow-lg">
-                  <div className="aspect-video w-full bg-dharma-100">
+                  <div className="aspect-video w-full bg-brand-cream">
                     <img
                       src={loc.image}
                       alt={loc.name}
@@ -85,12 +85,12 @@ function PlaceThPage() {
                   </div>
                   <CardContent className="p-6">
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-5 w-5 shrink-0 text-gold-500" />
-                      <h2 className="font-display text-xl font-bold text-dharma-900 group-hover:text-gold-600">
+                      <MapPin className="h-5 w-5 shrink-0 text-brand-gold-500" />
+                      <h2 className="font-serif text-xl font-bold text-brand-dark group-hover:text-brand-gold-600">
                         {loc.name}
                       </h2>
                     </div>
-                    <p className="mt-2 font-thai text-sm text-dharma-600">
+                    <p className="mt-2 font-thai text-sm text-brand-text-secondary">
                       {loc.description}
                     </p>
                   </CardContent>

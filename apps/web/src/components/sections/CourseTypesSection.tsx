@@ -38,20 +38,20 @@ const courses = [
 
 export function CourseTypesSection({ lang }: CourseTypesSectionProps) {
   return (
-    <section className="bg-dharma-50 px-4 py-16 md:py-20">
+    <section className="bg-brand-cream section-padding py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-display text-2xl font-bold text-dharma-900 md:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-brand-dark md:text-3xl lg:text-4xl">
           {t(lang, "section.courses")}
         </h2>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => {
             const Icon = course.icon;
             const url = PAGE_URL_MAP[course.page]?.[lang] ?? "#";
             return (
               <Link key={course.titleKey} to={url} className="group">
-                <Card className="overflow-hidden p-0 transition-shadow group-hover:shadow-lg">
-                  <div className="aspect-video w-full bg-dharma-100">
+                <Card className="overflow-hidden p-0 transition-all group-hover:shadow-lg group-hover:-translate-y-1">
+                  <div className="aspect-video w-full bg-brand-cream">
                     <img
                       src={course.image}
                       alt={t(lang, course.titleKey)}
@@ -61,14 +61,14 @@ export function CourseTypesSection({ lang }: CourseTypesSectionProps) {
                   </div>
                   <CardContent className="p-5">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold-100 text-gold-600">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-gold-50 text-brand-gold-600">
                         <Icon className="h-5 w-5" aria-hidden />
                       </div>
                       <div>
-                        <h3 className="font-display text-lg font-semibold text-dharma-800 group-hover:text-gold-600">
+                        <h3 className="font-serif text-lg font-semibold text-brand-dark group-hover:text-brand-gold-600">
                           {t(lang, course.titleKey)}
                         </h3>
-                        <p className="font-thai text-sm text-dharma-600">
+                        <p className="text-sm text-brand-text-secondary">
                           {t(lang, course.titleEnKey)}
                         </p>
                       </div>

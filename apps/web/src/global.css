@@ -1,29 +1,46 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold-50: #fdf8ef;
-  --color-gold-100: #faefd9;
-  --color-gold-200: #f4dbb2;
-  --color-gold-300: #edc481;
-  --color-gold-400: #e4a44e;
-  --color-gold-500: #dd8d2c;
-  --color-gold-600: #ce7422;
-  --color-gold-700: #ab591e;
-  --color-gold-800: #894720;
-  --color-gold-900: #6f3b1d;
-  --color-gold-950: #3c1d0d;
+  --color-brand-gold-50: #FFF9E6;
+  --color-brand-gold-100: #FFF0BF;
+  --color-brand-gold-200: #FFE699;
+  --color-brand-gold-300: #FFDB66;
+  --color-brand-gold-400: #FFD133;
+  --color-brand-gold-500: #C8A951;
+  --color-brand-gold-600: #B8963D;
+  --color-brand-gold-700: #9A7B2F;
+  --color-brand-gold-800: #7C6124;
+  --color-brand-gold-900: #5E4919;
 
-  --color-dharma-50: #f6f5f0;
-  --color-dharma-100: #e8e5d8;
-  --color-dharma-200: #d3cdb4;
-  --color-dharma-300: #b9af89;
-  --color-dharma-400: #a49766;
-  --color-dharma-500: #958758;
-  --color-dharma-600: #806e4a;
-  --color-dharma-700: #68573d;
-  --color-dharma-800: #584937;
-  --color-dharma-900: #4d4032;
-  --color-dharma-950: #2c231a;
+  --color-brand-cream: #FAF8F5;
+  --color-brand-dark: #1A1A1A;
+
+  --color-brand-text-primary: #1A1A1A;
+  --color-brand-text-secondary: #4A4A4A;
+  --color-brand-text-muted: #8A8A8A;
+
+  --color-gold-50: #FFF9E6;
+  --color-gold-100: #FFF0BF;
+  --color-gold-200: #FFE699;
+  --color-gold-300: #FFDB66;
+  --color-gold-400: #FFD133;
+  --color-gold-500: #C8A951;
+  --color-gold-600: #B8963D;
+  --color-gold-700: #9A7B2F;
+  --color-gold-800: #7C6124;
+  --color-gold-900: #5E4919;
+
+  --color-dharma-50: #FAF8F5;
+  --color-dharma-100: #F0EDE6;
+  --color-dharma-200: #E0DAD0;
+  --color-dharma-300: #C5BBA8;
+  --color-dharma-400: #A89A7E;
+  --color-dharma-500: #8A7A5E;
+  --color-dharma-600: #6E6049;
+  --color-dharma-700: #574B38;
+  --color-dharma-800: #3D352A;
+  --color-dharma-900: #2A241C;
+  --color-dharma-950: #1A1A1A;
 
   --color-nature-50: #f0f9f1;
   --color-nature-100: #dbf0de;
@@ -37,8 +54,10 @@
   --color-nature-900: #193d23;
   --color-nature-950: #0d2214;
 
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
   --font-thai: "Sarabun", "Noto Sans Thai", sans-serif;
-  --font-display: "Prompt", "Sarabun", sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -54,12 +73,62 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    font-family: var(--font-thai);
-    @apply text-dharma-900 bg-white antialiased;
+    font-family: var(--font-sans);
+    color: var(--color-brand-dark);
+    background-color: #fff;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: var(--font-serif);
+  }
+
+  ::selection {
+    background-color: var(--color-brand-gold-200);
+    color: var(--color-brand-dark);
+  }
+}
+
+@layer components {
+  .gold-gradient {
+    background: linear-gradient(135deg, var(--color-brand-gold-400), var(--color-brand-gold-600));
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, var(--color-brand-gold-500), var(--color-brand-gold-700));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .section-padding {
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }

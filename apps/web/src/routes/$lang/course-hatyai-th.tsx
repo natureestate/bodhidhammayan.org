@@ -25,10 +25,10 @@ function CourseHatYaiThPage() {
         ]}
       />
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <h1 className="font-display text-3xl font-bold text-dharma-900">
+        <h1 className="font-serif text-3xl font-bold text-brand-dark">
           ตารางคอร์สปฏิบัติธรรม หาดใหญ่
         </h1>
-        <p className="mt-4 text-dharma-600">
+        <p className="mt-4 text-brand-text-secondary">
           เนื้อหาจะถูกดึงจาก Sanity CMS
         </p>
       </section>

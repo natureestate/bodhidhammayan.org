@@ -16,15 +16,15 @@ function PostPage() {
   if (!post) {
     return (
       <section className="mx-auto max-w-4xl px-4 py-16 text-center">
-        <h1 className="font-display text-3xl font-bold text-dharma-900">
+        <h1 className="font-serif text-3xl font-bold text-brand-dark">
           ไม่พบบทความ
         </h1>
-        <p className="mt-4 text-dharma-600">
+        <p className="mt-4 text-brand-text-secondary">
           บทความที่คุณค้นหาไม่มีอยู่ในระบบ
         </p>
         <Link
           to={`/${lang}/${lang === "th" ? "hometh" : "homeen"}/`}
-          className="mt-6 inline-block rounded-lg bg-gold-500 px-6 py-3 font-semibold text-white hover:bg-gold-600"
+          className="mt-6 inline-block rounded-lg gold-gradient px-6 py-3 font-semibold text-white hover:bg-gold-600"
         >
           กลับหน้าแรก
         </Link>
@@ -75,11 +75,11 @@ function PostPage() {
         <div className="mb-4 flex items-center gap-3">
           <Link
             to={`/${lang}/${cat.path}/`}
-            className="rounded-full bg-gold-100 px-3 py-1 text-xs font-medium text-gold-700 hover:bg-gold-200"
+            className="rounded-full bg-brand-gold-100 px-3 py-1 text-xs font-medium text-gold-700 hover:bg-gold-200"
           >
             {cat.label}
           </Link>
-          <time className="text-sm text-dharma-400">
+          <time className="text-sm text-brand-text-muted">
             {new Date(post.date).toLocaleDateString(
               lang === "th" ? "th-TH" : "en-US",
               { year: "numeric", month: "long", day: "numeric" },
@@ -87,36 +87,36 @@ function PostPage() {
           </time>
         </div>
 
-        <h1 className="font-display text-3xl font-bold text-dharma-900 md:text-4xl">
+        <h1 className="font-serif text-3xl font-bold text-brand-dark md:text-4xl">
           {post.title}
         </h1>
 
-        <p className="mt-4 font-thai text-lg leading-relaxed text-dharma-600">
+        <p className="mt-4 font-thai text-lg leading-relaxed text-brand-text-secondary">
           {post.excerpt}
         </p>
 
-        <div className="mt-2 text-sm text-dharma-400">
+        <div className="mt-2 text-sm text-brand-text-muted">
           โดย {post.author}
         </div>
 
-        <hr className="my-8 border-dharma-100" />
+        <hr className="my-8 border-brand-gold-100/50" />
 
         <div className="prose prose-lg max-w-none">
           {post.content.split("\n\n").map((paragraph, i) => (
             <p
               key={i}
-              className="mb-4 font-thai text-base leading-relaxed text-dharma-700"
+              className="mb-4 font-thai text-base leading-relaxed text-brand-text-secondary"
             >
               {paragraph}
             </p>
           ))}
         </div>
 
-        <hr className="my-8 border-dharma-100" />
+        <hr className="my-8 border-brand-gold-100/50" />
 
         <Link
           to={`/${lang}/${cat.path}/`}
-          className="inline-flex items-center gap-2 text-gold-600 hover:text-gold-700"
+          className="inline-flex items-center gap-2 text-brand-gold-600 hover:text-gold-700"
         >
           &larr; กลับไปหน้า{cat.label}
         </Link>

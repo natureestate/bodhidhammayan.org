@@ -47,24 +47,24 @@ function RegisterEmailEnPage() {
         ]}
       />
 
-      <div className="relative bg-dharma-950 px-4 py-20">
+      <div className="relative bg-brand-dark px-4 py-20">
         <img
           src={siteConfig.images.hero}
           alt="Register"
           className="absolute inset-0 h-full w-full object-cover opacity-30"
         />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <h1 className="font-display text-3xl font-bold text-white md:text-4xl">
+          <h1 className="font-serif text-3xl font-bold text-white md:text-4xl">
             Register for Courses
           </h1>
-          <p className="mt-4 text-lg text-dharma-200">
+          <p className="mt-4 text-lg text-white/70">
             All courses are free of charge, operated by the foundations.
           </p>
         </div>
       </div>
 
       <section className="mx-auto max-w-4xl px-4 py-16">
-        <h2 className="font-display text-2xl font-bold text-dharma-900">
+        <h2 className="font-serif text-2xl font-bold text-brand-dark">
           Available Courses
         </h2>
 
@@ -72,21 +72,21 @@ function RegisterEmailEnPage() {
           {courseTypes.map((course) => (
             <div
               key={course.name}
-              className="rounded-xl border border-dharma-100 bg-white p-6 shadow-sm"
+              className="rounded-xl border border-brand-gold-100/50 bg-white p-6 shadow-sm"
             >
-              <h3 className="font-display text-lg font-bold text-dharma-800">
+              <h3 className="font-serif text-lg font-bold text-brand-dark">
                 {course.name}
               </h3>
-              <p className="mt-1 text-sm text-gold-600">{course.duration}</p>
-              <p className="mt-2 text-sm text-dharma-600">
+              <p className="mt-1 text-sm text-brand-gold-600">{course.duration}</p>
+              <p className="mt-2 text-sm text-brand-text-secondary">
                 {course.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 rounded-xl bg-dharma-50 p-8">
-          <h2 className="font-display text-2xl font-bold text-dharma-900">
+        <div className="mt-12 rounded-xl bg-brand-cream p-8">
+          <h2 className="font-serif text-2xl font-bold text-brand-dark">
             How to Register
           </h2>
           <div className="mt-6 space-y-4">
@@ -98,7 +98,7 @@ function RegisterEmailEnPage() {
             ].map((step, i) => (
               <div key={i} className="flex items-start gap-3">
                 <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-nature-500" />
-                <p className="text-base text-dharma-700">
+                <p className="text-base text-brand-text-secondary">
                   {i + 1}. {step}
                 </p>
               </div>
@@ -107,7 +107,7 @@ function RegisterEmailEnPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-sm text-dharma-500">
+          <p className="text-sm text-brand-text-muted">
             Contact: {siteConfig.contact.phone.join(", ")} | {siteConfig.contact.email}
           </p>
           <Button className="mt-6" size="lg" asChild>

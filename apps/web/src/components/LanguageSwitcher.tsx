@@ -21,7 +21,7 @@ export function LanguageSwitcher({ lang }: LanguageSwitcherProps) {
   return (
     <Link
       to={altPath}
-      className="rounded-md border border-dharma-200 px-3 py-1.5 text-sm font-medium text-dharma-600 transition-colors hover:bg-dharma-50"
+      className="rounded-md border border-brand-gold-200 px-3 py-1.5 text-sm font-medium text-brand-text-secondary transition-colors hover:bg-brand-gold-50 hover:text-brand-gold-700"
     >
       {LANGUAGE_NAMES[altLang]}
     </Link>

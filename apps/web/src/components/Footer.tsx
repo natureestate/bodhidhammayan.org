@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Youtube, Instagram, Music2 } from "lucide-react";
+import { Mail, Phone, Facebook, ArrowUp } from "lucide-react";
 import type { Language } from "@bodhidhammayan/api-client";
 import { t, PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { Button } from "./ui/button";
@@ -9,74 +9,60 @@ interface FooterProps {
   lang: Language;
 }
 
-const socialLinks = [
-  { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/bodhidhammayan" },
-  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@ThamLaewDee" },
-  { icon: Music2, label: "TikTok", href: "https://www.tiktok.com/@thamlaewdee" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/thamlaewdee" },
-];
-
 export function Footer({ lang }: FooterProps) {
-  return (
-    <footer className="border-t border-dharma-100 bg-dharma-950 text-dharma-200">
-      <div className="mx-auto max-w-7xl px-4 py-12">
-        <div className="grid gap-8 md:grid-cols-3">
-          <div>
-            <h3 className="font-display text-lg font-semibold text-gold-400">
-              {t(lang, "meta.siteName")}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-dharma-300">
-              {t(lang, "footer.foundation")}
-            </p>
-            <p className="mt-3 text-sm text-dharma-400">
-              {t(lang, "footer.address")}
-            </p>
-          </div>
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
+  return (
+    <footer className="border-t border-brand-gold-100/30 bg-brand-dark text-white/80">
+      <div className="section-padding mx-auto max-w-7xl py-16">
+        <div className="grid gap-10 md:grid-cols-3">
+          {/* ข้อมูลติดต่อ */}
           <div>
-            <h3 className="font-display text-lg font-semibold text-gold-400">
-              {lang === "th" ? "ติดต่อเรา" : "Contact Us"}
+            <h3 className="font-serif text-lg font-semibold text-brand-gold-400">
+              {lang === "th" ? "ติดต่อเรา" : "Contact with us"}
             </h3>
-            <div className="mt-3 space-y-2 text-sm text-dharma-300">
-              <p>{t(lang, "footer.hours")}</p>
-              <p>{t(lang, "footer.phone")}</p>
-              <p>{t(lang, "footer.fax")}</p>
-              <p>
+            <div className="mt-4 space-y-3 text-sm">
+              <p className="font-medium text-white/90">
+                {t(lang, "meta.siteName")}
+              </p>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 shrink-0 text-brand-gold-500" />
                 <a
                   href="mailto:info@bodhidhammayan.org"
-                  className="text-gold-400 hover:text-gold-300"
+                  className="transition-colors hover:text-brand-gold-400"
                 >
                   {t(lang, "footer.email")}
                 </a>
-              </p>
-            </div>
-            <div className="mt-4 flex gap-2">
-              {socialLinks.map(({ icon: Icon, label, href }) => (
-                <Button
-                  key={label}
-                  variant="ghost"
-                  size="icon"
-                  className="h-9 w-9 text-dharma-400 hover:bg-dharma-800 hover:text-gold-400"
-                  asChild
+              </div>
+              <div className="flex items-center gap-2">
+                <Facebook className="h-4 w-4 shrink-0 text-brand-gold-500" />
+                <a
+                  href="https://www.facebook.com/bodhidhammayan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-brand-gold-400"
                 >
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                </Button>
-              ))}
+                  {t(lang, "meta.siteName")}
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 shrink-0 text-brand-gold-500" />
+                <span>{t(lang, "footer.phone")}</span>
+              </div>
+              <p className="text-xs text-white/50">
+                {t(lang, "footer.hours")}
+              </p>
             </div>
           </div>
 
+          {/* ลิงก์ด่วน */}
           <div>
-            <h3 className="font-display text-lg font-semibold text-gold-400">
+            <h3 className="font-serif text-lg font-semibold text-brand-gold-400">
               {lang === "th" ? "ลิงก์ด่วน" : "Quick Links"}
             </h3>
-            <div className="mt-3 flex flex-col gap-1">
+            <div className="mt-4 flex flex-col gap-2">
               {[
                 { key: "nav.about", page: "about" },
                 { key: "nav.dhamma", page: "dhamma" },
@@ -86,63 +72,89 @@ export function Footer({ lang }: FooterProps) {
                 const url = PAGE_URL_MAP[item.page]?.[lang];
                 if (!url) return null;
                 return (
-                  <Button
+                  <Link
                     key={item.key}
-                    variant="link"
-                    className="h-auto justify-start p-0 text-dharma-300 hover:text-gold-400"
-                    asChild
+                    to={url}
+                    className="text-sm transition-colors hover:text-brand-gold-400"
                   >
-                    <Link to={url}>{t(lang, item.key)}</Link>
-                  </Button>
+                    {t(lang, item.key)}
+                  </Link>
                 );
               })}
             </div>
           </div>
+
+          {/* ข้อมูลสถานปฏิบัติธรรม */}
+          <div>
+            <h3 className="font-serif text-lg font-semibold text-brand-gold-400">
+              {t(lang, "meta.siteName")}
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-white/60">
+              {t(lang, "footer.foundation")}
+            </p>
+            <p className="mt-3 text-xs text-white/40">
+              {t(lang, "footer.address")}
+            </p>
+          </div>
         </div>
 
-        <Separator className="my-8 bg-dharma-800" />
+        <Separator className="my-10 bg-white/10" />
 
+        {/* บริจาค */}
         <div>
-          <h3 className="font-display text-center text-lg font-semibold text-gold-400">
+          <h3 className="text-center font-serif text-lg font-semibold text-brand-gold-400">
             {t(lang, "section.donation")}
           </h3>
-          <div className="mt-4 grid gap-4 text-center text-sm text-dharma-300 sm:grid-cols-2">
+          <div className="mt-4 grid gap-4 text-center text-sm text-white/70 sm:grid-cols-2">
             <div>
-              <p className="font-semibold text-dharma-200">
+              <p className="font-semibold text-white/90">
                 {lang === "th"
                   ? "มูลนิธิโนอิ้ง บุดด้า เพื่อการปกป้องพระพุทธศาสนา"
                   : "Knowing Buddha Foundation"}
               </p>
               <p>
-                {lang === "th" ? "ธนาคารกสิกรไทย" : "Kasikorn Bank"} 003-2-79877-4
+                {lang === "th" ? "ธนาคารกสิกรไทย" : "Kasikorn Bank"}{" "}
+                003-2-79877-4
               </p>
               <p>
                 {lang === "th" ? "ธนาคารไทยพาณิชย์" : "SCB"} 428-179929-8
               </p>
-              <p className="text-dharma-400">SWIFT: SICOTHBK</p>
+              <p className="text-white/40">SWIFT: SICOTHBK</p>
             </div>
             <div>
-              <p className="font-semibold text-dharma-200">
+              <p className="font-semibold text-white/90">
                 {lang === "th"
                   ? "มูลนิธิโรงเรียนแห่งชีวิต"
                   : "School of Life Foundation"}
               </p>
               <p>
-                {lang === "th" ? "ธนาคารกสิกรไทย" : "Kasikorn Bank"} 003-2-41586-7
+                {lang === "th" ? "ธนาคารกสิกรไทย" : "Kasikorn Bank"}{" "}
+                003-2-41586-7
               </p>
               <p>
                 {lang === "th" ? "ธนาคารไทยพาณิชย์" : "SCB"} 428-179580-4
               </p>
-              <p className="text-dharma-400">SWIFT: SICOTHBK</p>
+              <p className="text-white/40">SWIFT: SICOTHBK</p>
             </div>
           </div>
         </div>
 
-        <Separator className="my-8 bg-dharma-800" />
+        <Separator className="my-10 bg-white/10" />
 
-        <p className="text-center text-xs text-dharma-500">
-          {t(lang, "footer.copyright")}
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-white/40">
+            {t(lang, "footer.copyright")}
+          </p>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full border border-brand-gold-500/30 text-brand-gold-400 hover:bg-brand-gold-500/10 hover:text-brand-gold-300"
+            onClick={scrollToTop}
+          >
+            <ArrowUp className="h-4 w-4" />
+            <span className="sr-only">Back to top</span>
+          </Button>
+        </div>
       </div>
     </footer>
   );

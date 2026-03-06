@@ -47,7 +47,7 @@ function MasterThPage() {
                   key={label}
                   variant="ghost"
                   size="icon"
-                  className="rounded-full bg-dharma-100 hover:bg-gold-100 hover:text-gold-600"
+                  className="rounded-full bg-brand-cream hover:bg-brand-gold-100 hover:text-brand-gold-600"
                   asChild
                 >
                   <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
@@ -59,35 +59,35 @@ function MasterThPage() {
           </div>
 
           <div className="flex-1">
-            <h1 className="font-display text-3xl font-bold text-dharma-900 md:text-4xl">
+            <h1 className="font-serif text-3xl font-bold text-brand-dark md:text-4xl">
               {master.name}
             </h1>
-            <p className="mt-1 text-lg text-dharma-500">{master.nameEn}</p>
-            <p className="mt-4 font-thai text-lg font-medium text-gold-700">
+            <p className="mt-1 text-lg text-brand-text-muted">{master.nameEn}</p>
+            <p className="mt-4 font-thai text-lg font-medium text-brand-gold-600">
               {master.title}
             </p>
-            <p className="mt-2 text-sm text-dharma-500">
+            <p className="mt-2 text-sm text-brand-text-muted">
               ชั่วโมงภาวนา: {master.meditationHours.toLocaleString()}+ ชั่วโมง
             </p>
 
-            <hr className="my-6 border-dharma-100" />
+            <hr className="my-6 border-brand-gold-100/50" />
 
             <div className="space-y-4">
               {master.bio.split("\n\n").map((p, i) => (
-                <p key={i} className="font-thai text-base leading-relaxed text-dharma-700">
+                <p key={i} className="font-thai text-base leading-relaxed text-brand-text-secondary">
                   {p}
                 </p>
               ))}
             </div>
 
-            <hr className="my-6 border-dharma-100" />
+            <hr className="my-6 border-brand-gold-100/50" />
 
-            <h2 className="font-display text-2xl font-bold text-dharma-900">
+            <h2 className="font-serif text-2xl font-bold text-brand-dark">
               ประวัติการปฏิบัติ
             </h2>
             <div className="mt-4 space-y-4">
               {master.history.split("\n\n").map((p, i) => (
-                <p key={i} className="font-thai text-base leading-relaxed text-dharma-700">
+                <p key={i} className="font-thai text-base leading-relaxed text-brand-text-secondary">
                   {p}
                 </p>
               ))}

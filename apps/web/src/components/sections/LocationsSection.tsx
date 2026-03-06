@@ -33,19 +33,19 @@ const locations = [
 
 export function LocationsSection({ lang }: LocationsSectionProps) {
   return (
-    <section className="bg-white px-4 py-16 md:py-20">
+    <section className="bg-white section-padding py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-display text-2xl font-bold text-dharma-900 md:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-brand-dark md:text-3xl lg:text-4xl">
           {t(lang, "section.locations")}
         </h2>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {locations.map((loc) => {
             const url = PAGE_URL_MAP[loc.page]?.[lang] ?? "#";
             return (
               <Link key={loc.key} to={url} className="group">
-                <Card className="overflow-hidden p-0 transition-shadow group-hover:shadow-lg">
-                  <div className="aspect-video w-full bg-dharma-100">
+                <Card className="overflow-hidden p-0 transition-all group-hover:shadow-lg group-hover:-translate-y-1">
+                  <div className="aspect-video w-full bg-brand-cream">
                     <img
                       src={loc.image}
                       alt={t(lang, loc.key)}
@@ -54,8 +54,8 @@ export function LocationsSection({ lang }: LocationsSectionProps) {
                     />
                   </div>
                   <CardContent className="flex items-center gap-3 p-5">
-                    <MapPin className="h-5 w-5 shrink-0 text-gold-500" />
-                    <h3 className="font-display text-lg font-semibold text-dharma-800 group-hover:text-gold-600">
+                    <MapPin className="h-5 w-5 shrink-0 text-brand-gold-500" />
+                    <h3 className="font-serif text-lg font-semibold text-brand-dark group-hover:text-brand-gold-600">
                       {t(lang, loc.key)}
                     </h3>
                   </CardContent>

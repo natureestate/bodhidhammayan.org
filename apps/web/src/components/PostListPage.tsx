@@ -95,11 +95,11 @@ export function PostListPage(props: PostListPageProps) {
       });
 
       return (
-        <section className="mx-auto max-w-6xl px-4 py-16">
-          <h1 className="font-display text-3xl font-bold text-dharma-900">
+        <section className="section-padding mx-auto max-w-6xl py-20">
+          <h1 className="font-serif text-3xl font-bold text-brand-dark">
             {title}
           </h1>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <PostCard
                 key={post.id}
@@ -114,7 +114,7 @@ export function PostListPage(props: PostListPageProps) {
 
           {totalPages > 1 && (
             <nav
-              className="mt-8 flex justify-center gap-2"
+              className="mt-10 flex justify-center gap-2"
               aria-label="Pagination"
             >
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
@@ -123,10 +123,10 @@ export function PostListPage(props: PostListPageProps) {
                     key={p}
                     to={basePathClean}
                     search={p === 1 ? undefined : { page: p }}
-                    className={`rounded px-4 py-2 transition-colors ${
+                    className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
                       p === page
-                        ? "bg-gold-500 text-white"
-                        : "text-dharma-600 hover:bg-dharma-100"
+                        ? "gold-gradient text-white shadow-sm"
+                        : "text-brand-text-secondary hover:bg-brand-gold-50"
                     }`}
                   >
                     {p}
@@ -153,11 +153,11 @@ export function PostListPage(props: PostListPageProps) {
   }));
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16">
-      <h1 className="font-display text-3xl font-bold text-dharma-900">
+    <section className="section-padding mx-auto max-w-6xl py-20">
+      <h1 className="font-serif text-3xl font-bold text-brand-dark">
         {title}
       </h1>
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <PostCard
             key={post.id}

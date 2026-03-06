@@ -20,20 +20,20 @@ const faqItems = [
 
 export function FaqSection({ lang }: FaqSectionProps) {
   return (
-    <section className="bg-white px-4 py-16 md:py-20">
+    <section className="bg-white section-padding py-20 md:py-28">
       <div className="mx-auto max-w-3xl">
-        <h2 className="font-display text-2xl font-bold text-dharma-900 md:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-brand-dark md:text-3xl lg:text-4xl">
           {t(lang, "section.faq")}
         </h2>
 
-        <Accordion type="single" collapsible className="mt-10">
+        <Accordion type="single" collapsible className="mt-12">
           {faqItems.map((item, index) => (
             <AccordionItem key={item.qKey} value={`item-${index}`}>
-              <AccordionTrigger className="px-1 text-left">
+              <AccordionTrigger className="px-1 text-left font-serif">
                 {t(lang, item.qKey)}
               </AccordionTrigger>
               <AccordionContent className="px-1">
-                <p className="font-thai text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed text-brand-text-secondary">
                   {t(lang, item.aKey)}
                 </p>
               </AccordionContent>

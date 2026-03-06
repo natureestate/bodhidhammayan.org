@@ -20,15 +20,15 @@ export function FounderSection({ lang }: FounderSectionProps) {
   const masterUrl = PAGE_URL_MAP.master?.[lang] ?? "#";
 
   return (
-    <section className="bg-white px-4 py-16 md:py-20">
+    <section id="about" className="bg-white section-padding py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-display text-2xl font-bold text-dharma-900 md:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-brand-dark md:text-3xl lg:text-4xl">
           {t(lang, "section.founder")}
         </h2>
 
-        <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
+        <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-start md:gap-14">
           <div className="shrink-0 md:w-1/3">
-            <div className="aspect-square w-full max-w-xs overflow-hidden rounded-xl bg-dharma-100">
+            <div className="aspect-square w-full max-w-xs overflow-hidden rounded-2xl bg-brand-cream shadow-lg">
               <img
                 src={master.image}
                 alt={master.name}
@@ -39,38 +39,32 @@ export function FounderSection({ lang }: FounderSectionProps) {
           </div>
 
           <div className="flex-1">
-            <h3 className="font-display text-xl font-bold text-dharma-900">
+            <h3 className="font-serif text-xl font-bold text-brand-dark lg:text-2xl">
               {master.name}
             </h3>
-            <p className="mt-2 font-thai text-base leading-relaxed text-dharma-800 md:text-lg">
+            <p className="mt-2 text-base leading-relaxed text-brand-text-secondary md:text-lg">
               {master.title}
             </p>
-            <p className="mt-4 font-thai text-sm leading-relaxed text-dharma-600 line-clamp-4">
+            <p className="mt-4 text-sm leading-relaxed text-brand-text-muted line-clamp-4">
               {master.bio.split("\n\n")[0]}
             </p>
 
             <div className="mt-6 flex gap-3">
               {socialLinks.map(({ icon: Icon, label, href }) => (
-                <Button
+                <a
                   key={label}
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-full bg-dharma-100 hover:bg-gold-100 hover:text-gold-600"
-                  asChild
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-gold-50 text-brand-gold-600 transition-colors hover:bg-brand-gold-100 hover:text-brand-gold-700"
                 >
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </a>
-                </Button>
+                  <Icon className="h-5 w-5" />
+                </a>
               ))}
             </div>
 
-            <Button className="mt-6" size="lg" asChild>
+            <Button className="mt-8" size="lg" asChild>
               <Link to={masterUrl}>{t(lang, "founder.readMore")}</Link>
             </Button>
           </div>
