@@ -2,9 +2,15 @@ import { Link } from "@tanstack/react-router";
 import type { Language } from "@bodhidhammayan/api-client";
 import { getPosts } from "@bodhidhammayan/api-client";
 import { PostCard } from "./PostCard";
+import { getPostsByCategory, type SeedPost } from "~/data";
 
-/** รูปแบบโพสต์จาก getPosts (ไม่มี body) */
 type PostListItem = Awaited<ReturnType<typeof getPosts>>["posts"][number];
+
+const SEED_CATEGORY_MAP: Record<string, SeedPost["category"]> = {
+  dhamma: "teachings",
+  news: "news",
+  experience: "testimonials",
+};
 
 interface PostListPagePropsWithData {
   category: "dhamma" | "news" | "experience";
@@ -29,10 +35,13 @@ function isPropsWithData(
   return "data" in props && "basePath" in props;
 }
 
-/**
- * คอมโพเนนต์แสดงรายการโพสต์ตามหมวดหมู่ (ธรรมะ, ข่าว, ประสบการณ์)
- * รองรับทั้งข้อมูลจาก Sanity (data + basePath) และ placeholder (title)
- */
+function formatDate(dateStr: string, lang: Language): string {
+  return new Date(dateStr).toLocaleDateString(
+    lang === "th" ? "th-TH" : "en-US",
+    { year: "numeric", month: "long", day: "numeric" },
+  );
+}
+
 export function PostListPage(props: PostListPageProps) {
   const { category, lang } = props;
 
@@ -61,94 +70,86 @@ export function PostListPage(props: PostListPageProps) {
     const { posts: dataPosts, totalPages, page } = props.data;
     const basePathClean = props.basePath.replace(/\/$/, "");
 
-    posts = dataPosts.map((post: PostListItem) => {
-      const slug =
-        typeof post.slug === "object" && post.slug?.current
-          ? post.slug.current
-          : String(post.slug);
-      const imageUrl =
-        post.featuredImage?.asset?.url ??
-        (typeof post.featuredImage === "object" &&
-        "asset" in post.featuredImage &&
-        post.featuredImage.asset?.url
-          ? post.featuredImage.asset.url
-          : undefined);
+    if (dataPosts.length > 0) {
+      posts = dataPosts.map((post: PostListItem) => {
+        const slug =
+          typeof post.slug === "object" && post.slug?.current
+            ? post.slug.current
+            : String(post.slug);
+        const imageUrl =
+          post.featuredImage?.asset?.url ??
+          (typeof post.featuredImage === "object" &&
+          "asset" in post.featuredImage &&
+          post.featuredImage.asset?.url
+            ? post.featuredImage.asset.url
+            : undefined);
 
-      return {
-        id: post._id,
-        title: post.title,
-        excerpt: post.excerpt,
-        date: new Date(post.publishedAt).toLocaleDateString(
-          lang === "th" ? "th-TH" : "en-US",
-        ),
-        imageUrl,
-        href: `${basePathClean}/${slug}`,
-      };
-    });
+        return {
+          id: post._id,
+          title: post.title,
+          excerpt: post.excerpt,
+          date: formatDate(post.publishedAt, lang),
+          imageUrl,
+          href: `${basePathClean}/${slug}`,
+        };
+      });
 
-    return (
-      <section className="mx-auto max-w-6xl px-4 py-16">
-        <h1 className="font-display text-3xl font-bold text-dharma-900">
-          {title}
-        </h1>
+      return (
+        <section className="mx-auto max-w-6xl px-4 py-16">
+          <h1 className="font-display text-3xl font-bold text-dharma-900">
+            {title}
+          </h1>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post) => (
+              <PostCard
+                key={post.id}
+                title={post.title}
+                excerpt={post.excerpt}
+                date={post.date}
+                imageUrl={post.imageUrl}
+                href={post.href}
+              />
+            ))}
+          </div>
 
-        {posts.length === 0 ? (
-          <p className="mt-8 text-dharma-500">
-            {lang === "th"
-              ? "ยังไม่มีเนื้อหาในหมวดนี้"
-              : "No content in this category yet."}
-          </p>
-        ) : (
-          <>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post) => (
-                <PostCard
-                  key={post.id}
-                  title={post.title}
-                  excerpt={post.excerpt}
-                  date={post.date}
-                  imageUrl={post.imageUrl}
-                  href={post.href}
-                />
-              ))}
-            </div>
-
-            {totalPages > 1 && (
-              <nav
-                className="mt-8 flex justify-center gap-2"
-                aria-label="Pagination"
-              >
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                  (p) => (
-                    <Link
-                      key={p}
-                      to={basePathClean}
-                      search={p === 1 ? undefined : { page: p }}
-                      className={`rounded px-4 py-2 transition-colors ${
-                        p === page
-                          ? "bg-gold-500 text-white"
-                          : "text-dharma-600 hover:bg-dharma-100"
-                      }`}
-                    >
-                      {p}
-                    </Link>
-                  ),
-                )}
-              </nav>
-            )}
-          </>
-        )}
-      </section>
-    );
+          {totalPages > 1 && (
+            <nav
+              className="mt-8 flex justify-center gap-2"
+              aria-label="Pagination"
+            >
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (p) => (
+                  <Link
+                    key={p}
+                    to={basePathClean}
+                    search={p === 1 ? undefined : { page: p }}
+                    className={`rounded px-4 py-2 transition-colors ${
+                      p === page
+                        ? "bg-gold-500 text-white"
+                        : "text-dharma-600 hover:bg-dharma-100"
+                    }`}
+                  >
+                    {p}
+                  </Link>
+                ),
+              )}
+            </nav>
+          )}
+        </section>
+      );
+    }
   }
 
-  // Placeholder mode
-  const placeholderPosts = Array.from({ length: 9 }, (_, i) => ({
-    id: `placeholder-${i}`,
-    title: `${title} ${i + 1}`,
-    excerpt: "เนื้อหาจะถูกดึงจาก Sanity CMS",
-    date: "2026-03-06",
-    href: `/${lang}/${category}-post-${i + 1}`,
+  const seedCategory = SEED_CATEGORY_MAP[category] ?? "teachings";
+  const seedPosts = getPostsByCategory(seedCategory);
+
+  posts = seedPosts.map((post) => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    date: formatDate(post.date, lang),
+    imageUrl: post.image,
+    href: `/${lang}/${post.slug}`,
   }));
 
   return (
@@ -157,12 +158,13 @@ export function PostListPage(props: PostListPageProps) {
         {title}
       </h1>
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {placeholderPosts.map((post) => (
+        {posts.map((post) => (
           <PostCard
             key={post.id}
             title={post.title}
             excerpt={post.excerpt}
             date={post.date}
+            imageUrl={post.imageUrl}
             href={post.href}
           />
         ))}

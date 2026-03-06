@@ -3,16 +3,17 @@ import { Facebook, Youtube, Instagram, Music2 } from "lucide-react";
 import type { Language } from "@bodhidhammayan/api-client";
 import { t, PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { Button } from "~/components/ui/button";
+import { master, siteConfig } from "~/data";
 
 interface FounderSectionProps {
   lang: Language;
 }
 
 const socialLinks = [
-  { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/bodhidhammayan" },
-  { icon: Music2, label: "TikTok", href: "https://www.tiktok.com/@thamlaewdee" },
-  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@ThamLaewDee" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/thamlaewdee" },
+  { icon: Facebook, label: "Facebook", href: siteConfig.social.facebook },
+  { icon: Music2, label: "TikTok", href: siteConfig.social.tiktok },
+  { icon: Youtube, label: "YouTube", href: siteConfig.social.youtube },
+  { icon: Instagram, label: "Instagram", href: siteConfig.social.instagram },
 ];
 
 export function FounderSection({ lang }: FounderSectionProps) {
@@ -27,12 +28,25 @@ export function FounderSection({ lang }: FounderSectionProps) {
 
         <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
           <div className="shrink-0 md:w-1/3">
-            <div className="aspect-square w-full max-w-xs rounded-xl bg-dharma-100" />
+            <div className="aspect-square w-full max-w-xs overflow-hidden rounded-xl bg-dharma-100">
+              <img
+                src={master.image}
+                alt={master.name}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <div className="flex-1">
-            <p className="font-thai text-base leading-relaxed text-dharma-800 md:text-lg">
-              {t(lang, "founder.title")}
+            <h3 className="font-display text-xl font-bold text-dharma-900">
+              {master.name}
+            </h3>
+            <p className="mt-2 font-thai text-base leading-relaxed text-dharma-800 md:text-lg">
+              {master.title}
+            </p>
+            <p className="mt-4 font-thai text-sm leading-relaxed text-dharma-600 line-clamp-4">
+              {master.bio.split("\n\n")[0]}
             </p>
 
             <div className="mt-6 flex gap-3">

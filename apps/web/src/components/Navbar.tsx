@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 import type { Language } from "@bodhidhammayan/api-client";
 import { t, PAGE_URL_MAP } from "@bodhidhammayan/api-client";
+import { siteConfig } from "~/data";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Button } from "./ui/button";
 import {
@@ -38,7 +39,12 @@ export function Navbar({ lang }: NavbarProps) {
           to={PAGE_URL_MAP["home"]?.[lang] ?? "/"}
           className="flex items-center gap-2"
         >
-          <span className="font-display text-xl font-bold text-dharma-800">
+          <img
+            src={siteConfig.images.logo}
+            alt={t(lang, "meta.siteName")}
+            className="h-10 w-auto"
+          />
+          <span className="font-display text-lg font-bold text-dharma-800 hidden sm:inline">
             {t(lang, "meta.siteName")}
           </span>
         </Link>

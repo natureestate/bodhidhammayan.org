@@ -1,7 +1,8 @@
+import { Link } from "@tanstack/react-router";
 import type { Language } from "@bodhidhammayan/api-client";
-import { t } from "@bodhidhammayan/api-client";
+import { t, PAGE_URL_MAP } from "@bodhidhammayan/api-client";
 import { Compass, Brain, Sparkles } from "lucide-react";
-import { Card, CardHeader, CardContent } from "~/components/ui/card";
+import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
 
 interface CourseTypesSectionProps {
@@ -14,18 +15,24 @@ const courses = [
     titleKey: "course.journey",
     titleEnKey: "course.journeyEn",
     durationKey: "course.journeyDuration",
+    image: "/images/teachings/meditation-more-than-you-think.webp",
+    page: "course-schedule",
   },
   {
     icon: Brain,
     titleKey: "course.anapanasati",
     titleEnKey: "course.anapanasatiEn",
     durationKey: "course.anapanasatiDuration",
+    image: "/images/teachings/dhamma-nature.webp",
+    page: "course-schedule",
   },
   {
     icon: Sparkles,
     titleKey: "course.vipassana",
     titleEnKey: "course.vipassanaEn",
     durationKey: "course.vipassanaDuration",
+    image: "/images/teachings/chanting-power.webp",
+    page: "course-schedule",
   },
 ];
 
@@ -40,25 +47,38 @@ export function CourseTypesSection({ lang }: CourseTypesSectionProps) {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => {
             const Icon = course.icon;
+            const url = PAGE_URL_MAP[course.page]?.[lang] ?? "#";
             return (
-              <Card key={course.titleKey} className="p-0">
-                <CardHeader className="pb-2">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gold-100 text-gold-600">
-                    <Icon className="h-6 w-6" aria-hidden />
+              <Link key={course.titleKey} to={url} className="group">
+                <Card className="overflow-hidden p-0 transition-shadow group-hover:shadow-lg">
+                  <div className="aspect-video w-full bg-dharma-100">
+                    <img
+                      src={course.image}
+                      alt={t(lang, course.titleKey)}
+                      className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                      loading="lazy"
+                    />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <h3 className="font-display text-lg font-semibold text-dharma-800">
-                    {t(lang, course.titleKey)}
-                  </h3>
-                  <p className="mt-1 font-thai text-sm text-dharma-600">
-                    {t(lang, course.titleEnKey)}
-                  </p>
-                  <Badge variant="nature" className="mt-3">
-                    {t(lang, course.durationKey)}
-                  </Badge>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-5">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold-100 text-gold-600">
+                        <Icon className="h-5 w-5" aria-hidden />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-lg font-semibold text-dharma-800 group-hover:text-gold-600">
+                          {t(lang, course.titleKey)}
+                        </h3>
+                        <p className="font-thai text-sm text-dharma-600">
+                          {t(lang, course.titleEnKey)}
+                        </p>
+                      </div>
+                    </div>
+                    <Badge variant="nature" className="mt-3">
+                      {t(lang, course.durationKey)}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </Link>
             );
           })}
         </div>

@@ -1,18 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { z } from "zod";
 import { getPosts } from "@bodhidhammayan/api-client";
 import { SeoHead } from "~/components/SeoHead";
 import { BreadcrumbLd } from "~/components/JsonLd";
 import { PostListPage } from "~/components/PostListPage";
 
-const searchSchema = z.object({
-  page: z.coerce.number().min(1).optional().default(1),
-});
-
 export const Route = createFileRoute("/$lang/newsen")({
-  validateSearch: searchSchema,
-  loader: async ({ params, search }) => {
-    return getPosts("news", params.lang, search.page);
+  loader: async ({ params }) => {
+    return getPosts("news", params.lang, 1);
   },
   component: NewsEnPage,
 });
